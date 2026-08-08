@@ -3,338 +3,595 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Spanish Quest: SIELE Prep</title>
+    <title>SIELE Pro: A1 до B2</title>
     <style>
         :root {
             --primary: #58cc02;
             --primary-dark: #58a700;
             --secondary: #1cb0f6;
             --secondary-dark: #1899d6;
+            --theory: #ce82ff;
+            --theory-dark: #a559d6;
             --bg: #ffffff;
             --text: #3c3c3c;
             --gray: #e5e5e5;
+            --gray-light: #f7f7f7;
             --wrong: #ff4b4b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', 'Segoe UI', sans-serif; }
-        
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; padding-bottom: 80px; }
 
-        /* Навигация */
-        nav { display: flex; justify-content: space-around; padding: 15px; border-bottom: 2px solid var(--gray); position: sticky; top: 0; background: white; z-index: 100; }
-        .stat { font-weight: bold; font-size: 1.1em; color: var(--secondary); }
+        header { display: flex; justify-content: space-between; padding: 15px 20px; border-bottom: 2px solid var(--gray); position: sticky; top: 0; background: white; z-index: 100; font-weight: bold; font-size: 1.2em; }
+        .xp-text { color: #ff9600; }
 
-        /* Экраны */
-        .screen { display: none; padding: 20px; max-width: 600px; margin: 0 auto; min-height: 90vh; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; border-top: 2px solid var(--gray); display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
+        .nav-item { text-align: center; color: #afafaf; cursor: pointer; font-size: 0.9em; font-weight: bold; width: 25%; padding: 10px 0; transition: 0.2s; }
+        .nav-item.active { color: var(--secondary); }
+        .nav-icon { font-size: 1.5em; display: block; margin-bottom: 5px; }
+
+        .screen { display: none; padding: 20px; max-width: 600px; margin: 0 auto; }
         .screen.active { display: block; }
-
-        /* Карточка уровня (Dashboard) */
-        .level-card { border: 2px solid var(--gray); border-radius: 15px; padding: 20px; margin-bottom: 20px; text-align: center; cursor: pointer; transition: 0.2s; }
-        .level-card:hover { border-color: var(--primary); background: #f7fff0; }
-        .level-card.locked { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
-        .level-title { font-size: 1.5em; font-weight: bold; margin-bottom: 10px; }
-
-        /* Игровой интерфейс */
-        .progress-container { width: 100%; height: 16px; background: var(--gray); border-radius: 8px; margin-bottom: 30px; overflow: hidden; }
-        .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
+        .level-header { margin: 20px 0 10px; font-size: 1.4em; color: var(--text); text-align: center; border-bottom: 2px dashed var(--gray); padding-bottom: 10px; }
         
-        .question-title { font-size: 1.6em; font-weight: bold; margin-bottom: 10px; }
-        .question-hint { color: #777; margin-bottom: 30px; font-style: italic; }
+        .lesson-btn { width: 100%; background: white; border: 2px solid var(--gray); padding: 20px; margin-bottom: 15px; border-radius: 16px; font-size: 1.1em; font-weight: bold; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 0 var(--gray); transition: 0.1s; }
+        .lesson-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
+        .lesson-btn.theory { border-color: var(--theory); box-shadow: 0 4px 0 var(--theory-dark); color: var(--theory-dark); }
+        .lesson-btn.practice { border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-dark); color: var(--primary-dark); }
 
-        /* Варианты ответов */
-        .options-grid { display: flex; flex-direction: column; gap: 12px; }
-        .option-btn { background: white; border: 2px solid var(--gray); padding: 15px; font-size: 1.1em; border-radius: 12px; cursor: pointer; text-align: left; transition: 0.2s; font-weight: bold; color: var(--text); }
-        .option-btn:hover { background: #f0f0f0; }
+        #lesson-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 200; flex-direction: column; }
+        .lesson-header { padding: 20px; display: flex; align-items: center; gap: 15px; }
+        .close-btn { background: none; border: none; font-size: 1.5em; color: #afafaf; cursor: pointer; }
+        .progress-bar-bg { flex: 1; height: 16px; background: var(--gray); border-radius: 8px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.3s; }
+        
+        .lesson-body { flex: 1; padding: 20px; max-width: 600px; margin: 0 auto; width: 100%; overflow-y: auto; }
+        .q-title { font-size: 1.3em; font-weight: bold; margin-bottom: 20px; line-height: 1.4; }
+        
+        .flashcard { background: transparent; width: 100%; height: 250px; perspective: 1000px; margin-bottom: 20px; cursor: pointer; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 1.8em; font-weight: bold; border-radius: 16px; border: 2px solid var(--gray); padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .flashcard-front { background-color: white; color: var(--text); }
+        .flashcard-back { background-color: var(--theory); color: white; transform: rotateY(180deg); border: none; }
+
+        .text-input { width: 100%; padding: 15px; font-size: 1.2em; border: 2px solid var(--gray); border-radius: 12px; margin-bottom: 20px; outline: none; transition: 0.2s; }
+        .text-input:focus { border-color: var(--secondary); background: #f0f9ff; }
+
+        .options-grid { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn { background: white; border: 2px solid var(--gray); padding: 15px; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; text-align: left; }
+        .option-btn.selected { background: #ddf4ff; border-color: var(--secondary); }
         .option-btn.correct { background: #d7ffb8; border-color: var(--primary); color: var(--primary-dark); }
         .option-btn.wrong { background: #ffdfe0; border-color: var(--wrong); color: var(--wrong); }
 
-        /* Кнопка записи голоса */
-        .mic-btn { background: var(--secondary); color: white; border: none; padding: 20px; border-radius: 50%; font-size: 2em; cursor: pointer; margin: 20px auto; display: block; width: 80px; height: 80px; box-shadow: 0 4px 0 var(--secondary-dark); }
+        .mic-btn { display: block; margin: 30px auto; width: 80px; height: 80px; border-radius: 50%; background: var(--secondary); color: white; font-size: 2em; border: none; box-shadow: 0 4px 0 var(--secondary-dark); cursor: pointer; }
         .mic-btn.recording { background: var(--wrong); box-shadow: 0 4px 0 #cc0000; animation: pulse 1s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-        /* Нижняя панель обратной связи */
-        .bottom-panel { position: fixed; bottom: 0; left: 0; width: 100%; padding: 20px; background: white; border-top: 2px solid var(--gray); transform: translateY(100%); transition: 0.3s; display: flex; justify-content: space-between; align-items: center; z-index: 200; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); }
-        .bottom-panel.visible { transform: translateY(0); }
-        
-        .action-btn { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 12px; font-size: 1.2em; font-weight: bold; cursor: pointer; box-shadow: 0 4px 0 var(--primary-dark); }
-        .action-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
+        .lesson-footer { padding: 20px; border-top: 2px solid var(--gray); display: flex; justify-content: space-between; align-items: center; background: white; }
+        .lesson-footer.correct-bg { background: #d7ffb8; }
+        .lesson-footer.wrong-bg { background: #ffdfe0; }
+        .check-btn { background: var(--primary); color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 12px; cursor: pointer; width: 100%; box-shadow: 0 4px 0 var(--primary-dark); }
+        .check-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
+        #feedback-msg { display: none; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-<nav id="navbar">
-    <div class="stat">🇪🇸 Español</div>
-    <div class="stat">⚡ Опыт: <span id="xp-counter">0</span></div>
+<header>
+    <div>🇪🇸 SIELE Pro</div>
+    <div class="xp-text">⚡ <span id="xp-counter">0</span> XP</div>
+</header>
+
+<div id="tab-theory" class="screen active">
+    <!-- Сюда уроки будут добавляться через JS -->
+</div>
+<div id="tab-listening" class="screen"></div>
+<div id="tab-speaking" class="screen"></div>
+<div id="tab-writing" class="screen"></div>
+
+<nav class="bottom-nav">
+    <div class="nav-item active" onclick="switchTab('theory', this)"><span class="nav-icon">📚</span> Правила</div>
+    <div class="nav-item" onclick="switchTab('listening', this)"><span class="nav-icon">🎧</span> Аудио</div>
+    <div class="nav-item" onclick="switchTab('speaking', this)"><span class="nav-icon">🗣️</span> Речь</div>
+    <div class="nav-item" onclick="switchTab('writing', this)"><span class="nav-icon">✍️</span> Письмо</div>
 </nav>
 
-<!-- ЭКРАН 1: Дашборд (Карта уровней) -->
-<div id="dashboard-screen" class="screen active">
-    <h2 style="margin-bottom: 20px; text-align: center;">Путь к SIELE</h2>
-    <div id="levels-container"></div>
-</div>
-
-<!-- ЭКРАН 2: Игровой процесс -->
-<div id="game-screen" class="screen">
-    <div class="progress-container">
-        <div class="progress-bar" id="game-progress"></div>
+<div id="lesson-screen">
+    <div class="lesson-header">
+        <button class="close-btn" onclick="closeLesson()">✖</button>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="lesson-progress"></div></div>
     </div>
-    
-    <div class="question-title" id="q-title">Вопрос</div>
-    <div class="question-hint" id="q-hint">Подсказка</div>
-    
-    <div id="q-content">
-        <!-- Сюда вставляются кнопки или микрофон -->
+    <div class="lesson-body" id="lesson-body"></div>
+    <div class="lesson-footer" id="lesson-footer">
+        <div style="width: 100%;">
+            <div id="feedback-msg"></div>
+            <button class="check-btn" id="check-btn" onclick="checkAnswer()">Проверить</button>
+        </div>
     </div>
-</div>
-
-<!-- Нижняя панель действий -->
-<div class="bottom-panel" id="action-panel">
-    <div id="feedback-text" style="font-size: 1.2em; font-weight: bold;"></div>
-    <button class="action-btn" id="next-btn" onclick="handleNext()">Далее</button>
 </div>
 
 <script>
-    // --- БАЗА ДАННЫХ ИГРЫ ---
-    const courseData = [
+// ==========================================
+// БАЗА ДАННЫХ УРОКОВ (НАЧАЛО: A1)
+// ==========================================
+const database = {
+    theory: [
         {
-            id: "module_1",
-            title: "A1: Основы",
-            requiredXP: 0,
-            questions: [
-                { type: "choice", q: "Как сказать «Доброе утро»?", options: ["Buenas noches", "Buenos días", "Hola"], correct: 1 },
-                { type: "speak", q: "Произнесите по-испански: «Спасибо»", textToMatch: "gracias", hint: "Нажмите на микрофон и скажите 'Gracias'" }
+            level: "A1 (Основы)",
+            title: "Урок 1: Базовые приветствия",
+            tasks: [
+                { type: "flashcard", front: "¡Hola!", back: "Привет!" },
+                { type: "flashcard", front: "Buenos días", back: "Доброе утро (до 12:00)" },
+                { type: "flashcard", front: "Buenas tardes", back: "Добрый день (с 12:00 до заката)" },
+                { type: "flashcard", front: "Buenas noches", back: "Добрый вечер / Спокойной ночи" },
+                { type: "flashcard", front: "Adiós", back: "До свидания" },
+                { type: "choice", q: "Как поздороваться утром?", options: ["Buenas tardes", "Buenos días", "Adiós"], correct: 1 }
             ]
         },
         {
-            id: "module_2",
-            title: "A2: Прошедшее время",
-            requiredXP: 20,
-            questions: [
-                { type: "choice", q: "Ayer yo _____ (видеть) una película.", options: ["veo", "veía", "vi"], correct: 2 },
-                { type: "speak", q: "Произнесите: «Вчера я ел паэлью»", textToMatch: "ayer comí paella", hint: "Скажите 'Ayer comí paella'" }
+            level: "A1 (Основы)",
+            title: "Урок 2: Личные местоимения",
+            tasks: [
+                { type: "flashcard", front: "Yo", back: "Я" },
+                { type: "flashcard", front: "Tú", back: "Ты" },
+                { type: "flashcard", front: "Él / Ella", back: "Он / Она" },
+                { type: "flashcard", front: "Nosotros / Nosotras", back: "Мы (м.р. / ж.р.)" },
+                { type: "flashcard", front: "Ellos / Ellas", back: "Они (м.р. / ж.р.)" },
+                { type: "write", q: "Напишите по-испански: «Она»", match: "ella" }
             ]
         },
-        // НОВЫЙ МОДУЛЬ: Аудирование
         {
-            id: "module_3",
-            title: "B1: Аудирование",
-            requiredXP: 40,
-            questions: [
-                { 
-                    type: "audio", 
-                    q: "Послушайте звук. Что происходит на улице?", 
-                    audioUrl: "https://actions.google.com/sounds/v1/water/rain_on_roof.ogg", // Тестовое аудио
-                    options: ["Hace sol (Солнечно)", "Está lloviendo (Идет дождь)", "Nieva (Идет снег)"], 
-                    correct: 1 
-                }
+            level: "A1 (Основы)",
+            title: "Урок 3: Глагол SER (Быть - Постоянное)",
+            tasks: [
+                { type: "flashcard", front: "Yo soy", back: "Я (есть)" },
+                { type: "flashcard", front: "Tú eres", back: "Ты (есть)" },
+                { type: "flashcard", front: "Él es", back: "Он (есть)" },
+                { type: "flashcard", front: "Nosotros somos", back: "Мы (есть)" },
+                { type: "flashcard", front: "Ellos son", back: "Они (есть)" },
+                { type: "choice", q: "Выберите правильную форму: Yo _____ estudiante.", options: ["eres", "soy", "es"], correct: 1 }
+            ]
+        },
+        {
+            level: "A1 (Основы)",
+            title: "Урок 4: Глагол ESTAR (Быть - Временно/Место)",
+            tasks: [
+                { type: "flashcard", front: "Yo estoy", back: "Я нахожусь / Я чувствую" },
+                { type: "flashcard", front: "Tú estás", back: "Ты находишься" },
+                { type: "flashcard", front: "Él está", back: "Он находится" },
+                { type: "choice", q: "Мы в Мадриде: Nosotros _____ en Madrid.", options: ["somos", "estamos", "están"], correct: 1 },
+                { type: "choice", q: "Как дела? (Как ты находишься?): ¿Cómo _____?", options: ["estás", "eres", "estoy"], correct: 0 }
+            ]
+        },
+        {
+            level: "A1 (Основы)",
+            title: "Урок 5: Вопросительные слова",
+            tasks: [
+                { type: "flashcard", front: "¿Qué?", back: "Что? Какой?" },
+                { type: "flashcard", front: "¿Quién?", back: "Кто?" },
+                { type: "flashcard", front: "¿Dónde?", back: "Где?" },
+                { type: "flashcard", front: "¿Cuándo?", back: "Когда?" },
+                { type: "write", q: "Переведите: «Где?»", match: "dónde" }
             ]
         }
-    ];
+    ],
+    listening: [
+        {
+            level: "A1 (Аудирование)",
+            title: "Урок 1: Распознавание приветствий",
+            tasks: [
+                { type: "audio", url: "audio_a1_1.mp3", q: "Что сказал диктор?", options: ["Hola", "Adiós", "Gracias"], correct: 0 },
+                { type: "audio", url: "audio_a1_2.mp3", q: "В какое время суток происходит диалог?", options: ["Утро", "Вечер", "Ночь"], correct: 0 }
+            ]
+        },
+        {
+            level: "A1 (Аудирование)",
+            title: "Урок 2: Знакомство",
+            tasks: [
+                { type: "audio", url: "audio_a1_3.mp3", q: "Как зовут говорящего?", options: ["Me llamo Carlos", "Me llamo María", "Me llamo Juan"], correct: 0 },
+                { type: "audio", url: "audio_a1_4.mp3", q: "Откуда он родом?", options: ["De España", "De México", "De Colombia"], correct: 1 }
+            ]
+        }
+    ],
+    speaking: [
+        {
+            level: "A1 (Говорение)",
+            title: "Урок 1: Первые фразы",
+            tasks: [
+                { type: "speak", q: "Произнесите: «Привет, как дела?»", match: "hola cómo estás" },
+                { type: "speak", q: "Произнесите: «Меня зовут Анна»", match: "me llamo ana" }
+            ]
+        },
+        {
+            level: "A1 (Говорение)",
+            title: "Урок 2: О себе",
+            tasks: [
+                { type: "speak", q: "Произнесите: «Я из Испании»", match: "soy de españa" },
+                { type: "speak", q: "Произнесите: «Я студент»", match: "soy estudiante" }
+            ]
+        }
+    ],
+    writing: [
+        {
+            level: "A1 (Письмо)",
+            title: "Урок 1: Базовый перевод",
+            tasks: [
+                { type: "write", q: "Переведите на испанский: «Добрый день» (после обеда)", match: "buenas tardes" },
+                { type: "write", q: "Переведите: «Спасибо»", match: "gracias" },
+                { type: "write", q: "Переведите: «До свидания»", match: "adiós" }
+            ]
+        },
+        {
+            level: "A1 (Письмо)",
+            title: "Урок 2: Построение предложений",
+            tasks: [
+                { type: "choice", q: "Соберите предложение: «Я из России»", options: ["Rusia de soy", "Soy de Rusia", "De soy Rusia"], correct: 1 },
+                { type: "write", q: "Напишите: «Он врач» (médico)", match: "él es médico" }
+            ]
+        }
+    ]
+};
 
-    // --- СОСТОЯНИЕ ИГРЫ ---
-    let userXP = parseInt(localStorage.getItem('spanishQuestXP')) || 0;
-    let currentModule = null;
-    let currentQuestionIndex = 0;
-    let isAnswered = false;
-
-    // --- DOM Элементы ---
-    const screens = {
-        dashboard: document.getElementById('dashboard-screen'),
-        game: document.getElementById('game-screen')
-    };
-    const ui = {
-        xp: document.getElementById('xp-counter'),
-        levels: document.getElementById('levels-container'),
-        progress: document.getElementById('game-progress'),
-        qTitle: document.getElementById('q-title'),
-        qHint: document.getElementById('q-hint'),
-        qContent: document.getElementById('q-content'),
-        panel: document.getElementById('action-panel'),
-        feedback: document.getElementById('feedback-text'),
-        nextBtn: document.getElementById('next-btn'),
-        navbar: document.getElementById('navbar')
-    };
-
-    // --- ИНИЦИАЛИЗАЦИЯ ---
-    function initApp() {
-        ui.xp.textContent = userXP;
-        renderDashboard();
+// ==========================================
+// БАЗА ДАННЫХ УРОКОВ (ПРОДОЛЖЕНИЕ: A2 -> B1)
+// ==========================================
+database.theory.push(
+    {
+        level: "A2 (Продолжение)",
+        title: "Урок 6: Прошедшее время (Pretérito Indefinido)",
+        tasks: [
+            { type: "flashcard", front: "Ayer", back: "Вчера" },
+            { type: "flashcard", front: "Yo hablé / comí / viví", back: "Я говорил / ел / жил" },
+            { type: "flashcard", front: "Anoche", back: "Вчера вечером / ночью" },
+            { type: "choice", q: "Выберите правильную форму: Ayer yo _____ una película.", options: ["veo", "vi", "veía"], correct: 1 }
+        ]
+    },
+    {
+        level: "B1 (Средний)",
+        title: "Урок 7: Наклонение Subjuntivo (Введение)",
+        tasks: [
+            { type: "flashcard", front: "Espero que tú...", back: "Я надеюсь, что ты..." },
+            { type: "flashcard", front: "Quiero que vengas", back: "Я хочу, чтобы ты пришел" },
+            { type: "choice", q: "Выберите форму: Es importante que tú _____ (estudiar) hoy.", options: ["estudias", "estudies", "estudiar"], correct: 1 }
+        ]
     }
+);
 
-    // --- НАВИГАЦИЯ ---
-    function switchScreen(screenName) {
-        Object.values(screens).forEach(s => s.classList.remove('active'));
-        screens[screenName].classList.add('active');
-        if(screenName === 'game') ui.navbar.style.display = 'none';
-        else ui.navbar.style.display = 'flex';
+database.listening.push(
+    {
+        level: "A2 (Аудирование)",
+        title: "Урок 3: Планы на выходные",
+        tasks: [
+            { type: "audio", url: "audio_a2_1.mp3", q: "Куда собирается поехать герой?", options: ["A la playa", "A la montaña", "A la ciudad"], correct: 0 },
+            { type: "audio", url: "audio_a2_2.mp3", q: "Какая будет погода?", options: ["Lluviosa", "Soleada", "Fría"], correct: 1 }
+        ]
     }
+);
 
-    // --- ДАШБОРД ---
-    function renderDashboard() {
-        ui.levels.innerHTML = '';
-        courseData.forEach((mod, index) => {
-            const isLocked = userXP < mod.requiredXP;
-            const card = document.createElement('div');
-            card.className = `level-card ${isLocked ? 'locked' : ''}`;
-            card.innerHTML = `
-                <div class="level-title">${mod.title}</div>
-                <div style="color: #777;">${isLocked ? `Нужно ${mod.requiredXP} XP` : 'Доступно'}</div>
-            `;
-            if (!isLocked) {
-                card.onclick = () => startModule(mod);
-            }
-            ui.levels.appendChild(card);
-        });
+database.speaking.push(
+    {
+        level: "A2 (Говорение)",
+        title: "Урок 3: Описание прошлого дня",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Вчера я ходил в магазин»", match: "ayer fui a la tienda" },
+            { type: "speak", q: "Произнесите: «Мне очень понравилось»", match: "me gustó mucho" }
+        ]
     }
+);
 
-    // --- ИГРОВОЙ ДВИЖОК ---
-    function startModule(mod) {
-        currentModule = mod;
-        currentQuestionIndex = 0;
-        switchScreen('game');
-        loadQuestion();
+database.writing.push(
+    {
+        level: "B1 (Письмо)",
+        title: "Урок 3: Сложные сослагательные конструкции",
+        tasks: [
+            { type: "write", q: "Переведите: «Я хочу, чтобы ты помог мне»", match: "quiero que me ayudes" },
+            { type: "choice", q: "Выберите правильный вариант уступки: _____ llueva, saldré de paseo.", options: ["Aunque", "A pesar de", "Porque"], correct: 0 }
+        ]
     }
+);
 
-    function loadQuestion() {
-        isAnswered = false;
-        ui.panel.classList.remove('visible');
-        ui.qContent.innerHTML = '';
+// ==========================================
+// ИНТЕРАКТИВНЫЙ ДВИЖОК И УПРАВЛЕНИЕ ИНТЕРФЕЙСОМ
+// ==========================================
+
+let xp = parseInt(localStorage.getItem('sieleXP')) || 0;
+document.getElementById('xp-counter').textContent = xp;
+
+let currentSection = '';
+let currentLessonIdx = 0;
+let currentTaskIdx = 0;
+let currentTask = null;
+let selectedOption = null;
+let isAnswered = false;
+
+const ui = {
+    lessonScreen: document.getElementById('lesson-screen'),
+    lessonBody: document.getElementById('lesson-body'),
+    progress: document.getElementById('lesson-progress'),
+    checkBtn: document.getElementById('check-btn'),
+    footer: document.getElementById('lesson-footer'),
+    feedback: document.getElementById('feedback-msg')
+};
+
+// Рендер списков уроков на экранах при загрузке
+function renderAllSections() {
+    ['theory', 'listening', 'speaking', 'writing'].forEach(sec => {
+        const container = document.getElementById(`tab-${sec}`);
+        if (!container) return;
+        container.innerHTML = '';
         
-        const q = currentModule.questions[currentQuestionIndex];
-        const progress = (currentQuestionIndex / currentModule.questions.length) * 100;
-        ui.progress.style.width = `${progress}%`;
-
-        ui.qTitle.textContent = q.q;
-        ui.qHint.textContent = q.hint || '';
-
-        if (q.type === 'choice') {
-            const grid = document.createElement('div');
-            grid.className = 'options-grid';
-            q.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = opt;
-                btn.onclick = () => checkChoice(idx, btn, q.correct);
-                grid.appendChild(btn);
-            });
-            ui.qContent.appendChild(grid);
-
-        } else if (q.type === 'speak') {
+        let currentLevel = '';
+        database[sec].forEach((lesson, idx) => {
+            if (lesson.level !== currentLevel) {
+                currentLevel = lesson.level;
+                const header = document.createElement('div');
+                header.className = 'level-header';
+                header.textContent = currentLevel;
+                container.appendChild(header);
+            }
             const btn = document.createElement('button');
-            btn.className = 'mic-btn';
-            btn.innerHTML = '🎤';
-            btn.onclick = () => startSpeechRecognition(q.textToMatch, btn);
-            ui.qContent.appendChild(btn);
+            btn.className = `lesson-btn ${sec === 'theory' ? 'theory' : 'practice'}`;
+            btn.innerHTML = `<span>📖 ${lesson.title}</span> <span>Начать</span>`;
+            btn.onclick = () => startLesson(sec, idx);
+            container.appendChild(btn);
+        });
+    });
+}
 
-        // НОВЫЙ БЛОК ДЛЯ АУДИО
-        } else if (q.type === 'audio') {
-            // Создаем плеер
-            const audioEl = document.createElement('audio');
-            audioEl.controls = true;
-            audioEl.src = q.audioUrl;
-            audioEl.style.width = '100%';
-            audioEl.style.marginBottom = '20px';
-            audioEl.style.borderRadius = '10px';
-            ui.qContent.appendChild(audioEl);
+function switchTab(tabId, el) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById(`tab-${tabId}`).classList.add('active');
+    el.classList.add('active');
+}
 
-            // Создаем кнопки с ответами под плеером
-            const grid = document.createElement('div');
-            grid.className = 'options-grid';
-            q.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = opt;
-                btn.onclick = () => checkChoice(idx, btn, q.correct);
-                grid.appendChild(btn);
-            });
-            ui.qContent.appendChild(grid);
-        }
-    }
+function startLesson(section, lessonIdx) {
+    currentSection = section;
+    currentLessonIdx = lessonIdx;
+    currentTaskIdx = 0;
+    ui.lessonScreen.style.display = 'flex';
+    loadTask();
+}
 
-    // --- ПРОВЕРКА ОТВЕТОВ ---
-    function checkChoice(selectedIdx, btnEl, correctIdx) {
-        if (isAnswered) return;
-        isAnswered = true;
+function closeLesson() {
+    ui.lessonScreen.style.display = 'none';
+    resetFooter();
+}
+
+function loadTask() {
+    resetFooter();
+    isAnswered = false;
+    selectedOption = null;
+    
+    const lesson = database[currentSection][currentLessonIdx];
+    currentTask = lesson.tasks[currentTaskIdx];
+    
+    ui.progress.style.width = `${(currentTaskIdx / lesson.tasks.length) * 100}%`;
+    ui.lessonBody.innerHTML = '';
+
+    if (currentTask.type === 'flashcard') {
+        ui.lessonBody.innerHTML = `
+            <div class="q-title">Изучите карточку правила:</div>
+            <div class="flashcard" onclick="this.classList.toggle('flipped'); checkFlashcard()">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">${currentTask.front}</div>
+                    <div class="flashcard-back">${currentTask.back}</div>
+                </div>
+            </div>
+            <div style="text-align: center; color: #777;">Нажмите на карточку, чтобы перевернуть</div>
+        `;
+        ui.checkBtn.textContent = "Продолжить";
+        ui.checkBtn.disabled = true;
+        ui.checkBtn.style.opacity = '0.5';
+
+    } else if (currentTask.type === 'write') {
+        ui.lessonBody.innerHTML = `
+            <div class="q-title">${currentTask.q}</div>
+            <input type="text" class="text-input" id="write-input" placeholder="Введите ответ на испанском..." autocomplete="off">
+        `;
+        ui.checkBtn.textContent = "Проверить";
+
+    } else if (currentTask.type === 'choice') {
+        let optionsHtml = currentTask.options.map((opt, i) => 
+            `<button class="option-btn" onclick="selectOption(${i}, this)">${opt}</button>`
+        ).join('');
+        ui.lessonBody.innerHTML = `
+            <div class="q-title">${currentTask.q}</div>
+            <div class="options-grid">${optionsHtml}</div>
+        `;
+        ui.checkBtn.textContent = "Проверить";
+
+    } else if (currentTask.type === 'audio') {
+        let optionsHtml = currentTask.options.map((opt, i) => 
+            `<button class="option-btn" onclick="selectOption(${i}, this)">${opt}</button>`
+        ).join('');
+        ui.lessonBody.innerHTML = `
+            <div class="q-title">${currentTask.q}</div>
+            <audio controls src="${currentTask.url}" style="width: 100%; margin-bottom: 20px;"></audio>
+            <div class="options-grid">${optionsHtml}</div>
+        `;
+        ui.checkBtn.textContent = "Проверить";
         
-        const buttons = ui.qContent.querySelectorAll('.option-btn');
-        if (selectedIdx === correctIdx) {
-            btnEl.classList.add('correct');
-            showFeedback(true, "Отлично!");
+    } else if (currentTask.type === 'speak') {
+        ui.lessonBody.innerHTML = `
+            <div class="q-title">${currentTask.q}</div>
+            <button class="mic-btn" id="mic-btn" onclick="startMic()">🎤</button>
+            <div style="text-align: center; color: #777;">Нажмите на микрофон и произнесите фразу</div>
+        `;
+        ui.checkBtn.textContent = "Пропустить";
+    }
+}
+
+function checkFlashcard() {
+    ui.checkBtn.disabled = false;
+    ui.checkBtn.style.opacity = '1';
+}
+
+function selectOption(idx, btn) {
+    if (isAnswered) return;
+    selectedOption = idx;
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+}
+
+function checkAnswer() {
+    if (isAnswered) {
+        nextTask();
+        return;
+    }
+
+    let isCorrect = false;
+
+    if (currentTask.type === 'flashcard') {
+        isCorrect = true;
+    } 
+    else if (currentTask.type === 'write') {
+        const val = document.getElementById('write-input').value.toLowerCase().trim();
+        if (!val) return;
+        if (val === currentTask.match.toLowerCase()) isCorrect = true;
+    }
+    else if (currentTask.type === 'choice' || currentTask.type === 'audio') {
+        if (selectedOption === null) return;
+        if (selectedOption === currentTask.correct) isCorrect = true;
+        
+        const btns = document.querySelectorAll('.option-btn');
+        btns[currentTask.correct].classList.add('correct');
+        if (!isCorrect) btns[selectedOption].classList.add('wrong');
+    }
+    else if (currentTask.type === 'speak') {
+        nextTask();
+        return; 
+    }
+
+    isAnswered = true;
+    showFeedback(isCorrect);
+}
+
+function showFeedback(isCorrect) {
+    ui.feedback.style.display = 'block';
+    if (isCorrect) {
+        ui.footer.classList.add('correct-bg');
+        ui.feedback.textContent = "Отлично! Верно.";
+        ui.feedback.style.color = "var(--primary-dark)";
+        xp += 10;
+    } else {
+        ui.footer.classList.add('wrong-bg');
+        ui.feedback.textContent = "Ошибка. Правильный ответ: " + (currentTask.match || currentTask.options[currentTask.correct]);
+        ui.feedback.style.color = "var(--wrong)";
+    }
+    ui.checkBtn.textContent = "Далее";
+}
+
+function resetFooter() {
+    ui.footer.classList.remove('correct-bg', 'wrong-bg');
+    ui.feedback.style.display = 'none';
+    ui.checkBtn.disabled = false;
+    ui.checkBtn.style.opacity = '1';
+}
+
+function nextTask() {
+    currentTaskIdx++;
+    const lesson = database[currentSection][currentLessonIdx];
+    
+    if (currentTaskIdx < lesson.tasks.length) {
+        loadTask();
+    } else {
+        localStorage.setItem('sieleXP', xp);
+        document.getElementById('xp-counter').textContent = xp;
+        alert(`Поздравляем! Урок пройден. Текущий XP: ${xp}`);
+        closeLesson();
+    }
+}
+
+function startMic() {
+    const btn = document.getElementById('mic-btn');
+    if (!('webkitSpeechRecognition' in window)) {
+        alert("Распознавание голоса поддерживается в Chrome/Edge.");
+        return;
+    }
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'es-ES';
+    
+    recognition.onstart = () => btn.classList.add('recording');
+    recognition.onresult = (event) => {
+        btn.classList.remove('recording');
+        const spoken = event.results[0][0].transcript.toLowerCase().replace(/[.,¡!¿?]/g, '').trim();
+        isAnswered = true;
+        if (spoken.includes(currentTask.match) || currentTask.match.includes(spoken)) {
+            showFeedback(true);
         } else {
-            btnEl.classList.add('wrong');
-            buttons[correctIdx].classList.add('correct');
-            showFeedback(false, "Ошибка. Правильный ответ подсвечен.");
+            ui.feedback.style.display = 'block';
+            ui.footer.classList.add('wrong-bg');
+            ui.feedback.textContent = `Вы сказали: "${spoken}". Ожидалось: "${currentTask.match}"`;
+            ui.feedback.style.color = "var(--wrong)";
+            ui.checkBtn.textContent = "Далее";
         }
-    }
+    };
+    recognition.onerror = () => btn.classList.remove('recording');
+    recognition.start();
+}
 
-    // --- РАСПОЗНАВАНИЕ ГОЛОСА ---
-    function startSpeechRecognition(targetText, btnEl) {
-        if (!('webkitSpeechRecognition' in window)) {
-            alert("Ваш браузер не поддерживает распознавание голоса. Используйте Google Chrome.");
-            return;
-        }
-
-        const recognition = new webkitSpeechRecognition();
-        recognition.lang = 'es-ES';
-        recognition.continuous = false;
-        recognition.interimResults = false;
-
-        recognition.onstart = () => {
-            btnEl.classList.add('recording');
-        };
-
-        recognition.onresult = (event) => {
-            const spokenText = event.results[0][0].transcript.toLowerCase().trim();
-            btnEl.classList.remove('recording');
-            isAnswered = true;
-            
-            // Простая проверка: содержит ли сказанное ключевые слова (убираем знаки препинания)
-            const cleanSpoken = spokenText.replace(/[.,¡!¿?]/g, '');
-            const cleanTarget = targetText.toLowerCase();
-
-            if (cleanSpoken.includes(cleanTarget) || cleanTarget.includes(cleanSpoken)) {
-                showFeedback(true, `Вы сказали: "${spokenText}". Превосходно!`);
-            } else {
-                showFeedback(false, `Вы сказали: "${spokenText}". Ожидалось: "${targetText}".`);
-            }
-        };
-
-        recognition.onerror = (event) => {
-            btnEl.classList.remove('recording');
-            alert("Ошибка микрофона: " + event.error);
-        };
-
-        recognition.start();
-    }
-
-    // --- ОБРАТНАЯ СВЯЗЬ И ПРОГРЕСС ---
-    function showFeedback(isCorrect, text) {
-        ui.feedback.textContent = text;
-        ui.feedback.style.color = isCorrect ? 'var(--primary-dark)' : 'var(--wrong)';
-        ui.panel.classList.add('visible');
-        if (isCorrect) {
-            userXP += 10;
-            localStorage.setItem('spanishQuestXP', userXP);
-            ui.xp.textContent = userXP;
-        }
-    }
-
-    function handleNext() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < currentModule.questions.length) {
-            loadQuestion();
-        } else {
-            // Урок закончен
-            ui.panel.classList.remove('visible');
-            alert(`Урок завершен! Вы заработали опыт. Ваш текущий XP: ${userXP}`);
-            renderDashboard();
-            switchScreen('dashboard');
-        }
-    }
-
-    // Запуск
-    initApp();
+// Первичный запуск отрисовки вкладок
+renderAllSections();
 </script>
-</body>
-</html>
+
+// ==========================================
+// БАЗА ДАННЫХ УРОКОВ (ФИНАЛ: УРОВЕНЬ B2 & SIELE)
+// ==========================================
+database.theory.push(
+    {
+        level: "B2 (Продвинутый SIELE)",
+        title: "Урок 8: Сослагательное наклонение в прошлом (Imperfecto de Subjuntivo)",
+        tasks: [
+            { type: "flashcard", front: "Si tuviera dinero...", back: "Если бы у меня были деньги..." },
+            { type: "flashcard", front: "Ojalá viniera", back: "Хоть бы он пришел (в прошлом/нереально)" },
+            { type: "choice", q: "Выберите правильную форму: Si tú _____ (saber) la verdad, me lo dirías.", options: ["sabes", "supieras", "sepas"], correct: 1 }
+        ]
+    },
+    {
+        level: "B2 (Продвинутый SIELE)",
+        title: "Урок 9: Средства связи текста (Marcadores del discurso)",
+        tasks: [
+            { type: "flashcard", front: "Por lo tanto", back: "Следовательно / поэтому" },
+            { type: "flashcard", front: "A pesar de que", back: "Несмотря на то, что" },
+            { type: "choice", q: "Заполните пропуск: ____ sus esfuerzos, no aprobó el examen.", options: ["Aunque", "A pesar de", "Por lo tanto"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "B1-B2 (Аудирование SIELE)",
+        title: "Урок 4: Академическая лекция и интервью",
+        tasks: [
+            { type: "audio", url: "audio_b2_1.mp3", q: "Какую основную проблему обсуждает спикер?", options: ["Экология мегаполисов", "Экономический кризис", "Развитие искусственного интеллекта"], correct: 0 },
+            { type: "audio", url: "audio_b2_2.mp3", q: "Какое решение предлагает эксперт?", options: ["Снизить выбросы углекислого газа", "Увеличить налоги", "Закрыть заводы"], correct: 0 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "B2 (Говорение SIELE)",
+        title: "Урок 4: Аргументация и защита позиции",
+        tasks: [
+            { type: "speak", q: "Произнесите: «С моей точки зрения, это совершенно неприемлемо»", match: "desde mi punto de vista esto es totalmente inaceptable" },
+            { type: "speak", q: "Произнесите: «Я полностью разделяю это мнение»", match: "comparto plenamente esta opinión" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "B2 (Письмо SIELE)",
+        title: "Урок 4: Официальное эссе и аргументированное письмо",
+        tasks: [
+            { type: "write", q: "Напишите вводную фразу для эссе: «В последние годы наблюдается тенденция...»", match: "en los últimos años se observa una tendencia" },
+            { type: "choice", q: "Какой союз требует после себя изъявительного наклонения (Indicativo) в утвердительных предложениях?", options: ["Es evidente que", "Dudo que", "Es posible que"], correct: 0 }
+        ]
+    }
+);
+
+// Перезапускаем отрисовку, чтобы новые уроки сразу появились в интерфейсе
+renderAllSections();
