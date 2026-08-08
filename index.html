@@ -119,17 +119,17 @@
 const database = {
     theory: [
         {
-            level: "Этап 1: База A1 (Месяц 1)",
-            title: "Урок 1: Приветствия и формы вежливости",
+            level: "Месяц 1: Этап A1 (Фундамент)",
+            title: "Урок 1: Приветствия, знакомство и алфавит",
             tasks: [
-                { type: "flashcard", front: "¡Hola! ¿Qué tal?", back: "Привет! Как дела?" },
-                { type: "flashcard", front: "Buenos días / tardes / noches", back: "Доброе утро / день / вечер" },
-                { type: "flashcard", front: "Mucho gusto / Encantado", back: "Очень приятно (при знакомстве)" },
+                { type: "flashcard", front: "¡Hola! ¿Cómo estás?", back: "Привет! Как дела?" },
+                { type: "flashcard", front: "Buenos días / Buenas tardes", back: "Доброе утро / Добрый день" },
+                { type: "flashcard", front: "Mucho gusto / Encantado", back: "Очень приятно" },
                 { type: "choice", q: "Как сказать «До свидания»?", options: ["Hola", "Adiós", "Gracias"], correct: 1 }
             ]
         },
         {
-            level: "Этап 1: База A1 (Месяц 1)",
+            level: "Месяц 1: Этап A1 (Фундамент)",
             title: "Урок 2: Личные местоимения",
             tasks: [
                 { type: "flashcard", front: "Yo / Tú / Él / Ella", back: "Я / Ты / Он / Она" },
@@ -138,203 +138,1372 @@ const database = {
             ]
         },
         {
-            level: "Этап 1: База A1 (Месяц 2)",
-            title: "Урок 3: Числа и счет от 0 до 100",
+            level: "Месяц 1: Этап A1 (Фундамент)",
+            title: "Урок 3: Числа от 0 до 20",
             tasks: [
                 { type: "flashcard", front: "Uno, dos, tres, cuatro, cinco", back: "1, 2, 3, 4, 5" },
-                { type: "flashcard", front: "Diez, veinte, treinta, cien", back: "10, 20, 30, 100" },
-                { type: "choice", q: "Как переводится «cinco»?", options: ["3", "5", "15"], correct: 1 }
+                { type: "flashcard", front: "Diez, quince, veinte", back: "10, 15, 20" },
+                { type: "choice", q: "Как переводится «diez»?", options: ["5", "10", "12"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 2: Этап A1 (Повседневность)",
+            title: "Урок 4: Семья и родственники",
+            tasks: [
+                { type: "flashcard", front: "El padre / La madre", back: "Отец / Мать" },
+                { type: "flashcard", front: "El hermano / La hermana", back: "Брат / Сестра" },
+                { type: "write", q: "Переведите: «Мать»", match: "madre" }
+            ]
+        },
+        {
+            level: "Месяц 2: Этап A1 (Повседневность)",
+            title: "Урок 5: Цвета и базовые прилагательные",
+            tasks: [
+                { type: "flashcard", front: "Rojo / Azul / Verde", back: "Красный / Синий / Зеленый" },
+                { type: "flashcard", front: "Grande / Pequeño", back: "Большой / Маленький" },
+                { type: "choice", q: "Какой цвет 'rojo'?", options: ["Синий", "Красный", "Белый"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 3: Этап A2 (Город)",
+            title: "Урок 6: Город и транспорт",
+            tasks: [
+                { type: "flashcard", front: "La calle / La plaza / El metro", back: "Улица / Площадь / Метро" },
+                { type: "flashcard", front: "¿Dónde está la estación?", back: "Где находится станция?" },
+                { type: "choice", q: "Что такое 'calle'?", options: ["Дом", "Улица", "Машина"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 3: Этап A2 (Город)",
+            title: "Урок 7: Еда и рестораны",
+            tasks: [
+                { type: "flashcard", front: "El menú / La cuenta, por favor", back: "Меню / Счёт, пожалуйста" },
+                { type: "flashcard", front: "Agua sin gas / con gas", back: "Вода без газа / с газом" },
+                { type: "write", q: "Напишите «Счет» по-испански", match: "cuenta" }
+            ]
+        },
+        {
+            level: "Месяц 4: Этап B1 (Погружение)",
+            title: "Урок 8: Путешествия и бронирование",
+            tasks: [
+                { type: "flashcard", front: "La reserva de hotel / El billete", back: "Бронь отеля / Билет" },
+                { type: "flashcard", front: "El vuelo se ha retrasado", back: "Рейс задержан" },
+                { type: "choice", q: "Как переводится 'reserva'?", options: ["Отмена", "Бронь", "Поездка"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 4: Этап B1 (Погружение)",
+            title: "Урок 9: Профессии и работа",
+            tasks: [
+                { type: "flashcard", front: "El currículum / La entrevista", back: "Резюме / Собеседование" },
+                { type: "flashcard", front: "Estar en el paro", back: "Быть безработным" },
+                { type: "write", q: "Напишите «Собеседование»", match: "entrevista" }
+            ]
+        },
+        {
+            level: "Месяц 5-6: Этап B2 (SIELE Штурм)",
+            title: "Урок 10: Экология и климат",
+            tasks: [
+                { type: "flashcard", front: "El cambio climático / La huella de carbono", back: "Изменение климата / Углеродный след" },
+                { type: "flashcard", front: "Energías renovables", back: "Возобновляемые источники энергии" },
+                { type: "choice", q: "Что такое 'cambio climático'?", options: ["Экономический рост", "Изменение климата", "Технологический прогресс"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 7-9: Этап B2 (SIELE Мастер)",
+            title: "Урок 11: Экономика и бизнес-лексика",
+            tasks: [
+                { type: "flashcard", front: "La tasa de desempleo / La inversión", back: "Уровень безработицы / Инвестиции" },
+                { type: "flashcard", front: "Llevar a cabo un proyecto", back: "Реализовать проект" },
+                { type: "write", q: "Напишите «Рынок» по-испански", match: "mercado" }
             ]
         }
     ],
     grammar: [
         {
-            level: "Этап 1: База A1 (Месяц 1)",
+            level: "Месяц 1: Базовая грамматика",
             title: "Урок 1: Глаголы SER и ESTAR",
             tasks: [
-                { type: "flashcard", front: "SER: soy, eres, es, somos, sois, son", back: "Постоянные признаки: профессия, национальность, характер, время." },
-                { type: "flashcard", front: "ESTAR: estoy, estás, está, estamos, estáis, están", back: "Временные состояния и местоположение." },
-                { type: "choice", q: "Выберите правильный глагол: Yo _____ de Madrid (Я из Мадрида).", options: ["soy", "estoy"], correct: 0 }
+                { type: "flashcard", front: "SER: soy, eres, es, somos, sois, son", back: "Постоянные признаки (профессиональные, национальные, качественные)." },
+                { type: "flashcard", front: "ESTAR: estoy, estás, está, estamos, estáis, están", back: "Временные состояния и локация." },
+                { type: "choice", q: "Выберите правильный глагол: Yo _____ cansado (Я устал).", options: ["soy", "estoy"], correct: 1 }
             ]
         },
         {
-            level: "Этап 1: База A1 (Месяц 2)",
+            level: "Месяц 2: Базовая грамматика",
             title: "Урок 2: Настоящее время (Presente de Indicativo)",
             tasks: [
-                { type: "flashcard", front: "Окончания -ar:\n-o, -as, -a, -amos, -áis, -an", back: "Например: hablar -> hablo, hablas, habla..." },
-                { type: "write", q: "Напишите форму глагола hablar для «yo»:", match: "hablo" }
+                { type: "flashcard", front: "Группы спрямлений: -AR, -ER, -IR", back: "Правильные глаголы меняют окончания по стандартным таблицам." },
+                { type: "write", q: "Напишите форму глагола vivir для «yo»", match: "vivo" }
+            ]
+        },
+        {
+            level: "Месяц 3: Прошлые времена",
+            title: "Урок 3: Indefinido vs Imperfecto",
+            tasks: [
+                { type: "flashcard", front: "Pretérito Indefinido", back: "Завершенное действие в прошлом с точной привязкой ко времени." },
+                { type: "flashcard", front: "Pretérito Imperfecto", back: "Повторяющееся или фоновое действие в прошлом." },
+                { type: "choice", q: "Ayer yo _____ (comprar) un libro.", options: ["compraba", "compré"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 4: Сослагательное наклонение",
+            title: "Урок 4: Введение в Presente de Subjuntivo",
+            tasks: [
+                { type: "flashcard", front: "Формула WEIRDO", back: "Wishes, Emotions, Impersonal, Requests, Doubt, Ojalá." },
+                { type: "choice", q: "Quiero que tú _____ (venir) a mi casa.", options: ["vienes", "vengas"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 5-6: Продвинутая грамматика B2",
+            title: "Урок 5: Прошедшее сослагательное (Imperfecto de Subjuntivo)",
+            tasks: [
+                { type: "flashcard", front: "Окончания -ra / -se", back: "Используется в нереальных условиях и при согласовании времен." },
+                { type: "choice", q: "Si yo _____ (tener) dinero, compraría una casa.", options: ["tengo", "tuviera"], correct: 1 }
+            ]
+        },
+        {
+            level: "Месяц 7-9: Утверждения и коннекторы",
+            title: "Урок 6: Сложные союзы и уступки",
+            tasks: [
+                { type: "flashcard", front: "A pesar de que + Subjuntivo", back: "Несмотря на то, что..." },
+                { type: "choice", q: "Выберите союз: _____ llueva, iremos al parque.", options: ["Aunque", "Porque"], correct: 0 }
             ]
         }
     ],
     listening: [
         {
-            level: "Этап 1: База A1",
-            title: "Урок 1: Понимание базовых диалогов",
+            level: "Аудирование: Уровень A1-A2",
+            title: "Урок 1: Восприятие коротких реплик",
             tasks: [
-                { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Прослушайте аудио и выберите правильное приветствие:", options: ["Hola", "Adiós", "Gracias"], correct: 0 }
+                { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Что приветствует диктор?", options: ["Приветствие (Hola)", "Прощание", "Вопрос"], correct: 0 }
+            ]
+        },
+        {
+            level: "Аудирование: Уровень B1-B2",
+            title: "Урок 2: Разбор интервью и мнений",
+            tasks: [
+                { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую главную мысль выражает спикер?", options: ["Согласие", "Протест", "Нейтралитет"], correct: 0 }
             ]
         }
     ],
     speaking: [
         {
-            level: "Этап 1: База A1",
-            title: "Урок 1: Тренажер базового представления",
+            level: "Речь: Уровень A1-A2",
+            title: "Урок 1: Базовое представление",
             tasks: [
-                { type: "speak", q: "Произнесите в микрофон: «Hola, me llamo Juan»", match: "hola me llamo juan" }
+                { type: "speak", q: "Произнесите: «Hola, me llamo Carlos y soy estudiante»", match: "hola me llamo carlos y soy estudiante" }
+            ]
+        },
+        {
+            level: "Речь: Уровень B1-B2 (SIELE)",
+            title: "Урок 2: Аргументация позиции",
+            tasks: [
+                { type: "speak", q: "Произнесите: «Desde mi punto de vista, esta iniciativa es muy eficaz»", match: "desde mi punto de vista esta iniciativa es muy eficaz" }
             ]
         }
     ],
     writing: [
         {
-            level: "Этап 1: База A1",
-            title: "Урок 1: Простой письменный перевод",
+            level: "Письмо: Уровень A1-A2",
+            title: "Урок 1: Короткие сообщения",
             tasks: [
-                { type: "write", q: "Переведите на испанский: «Доброе утро»", match: "buenos días" }
+                { type: "write", q: "Напишите по-испански: «Большое спасибо»", match: "muchas gracias" }
+            ]
+        },
+        {
+            level: "Письмо: Уровень B1-B2 (SIELE)",
+            title: "Урок 2: Официальное письмо / Эссе",
+            tasks: [
+                { type: "write", q: "Напишите начало официального письма: «Посредством данного письма я хочу...»", match: "por medio de la presente carta quiero" }
             ]
         }
     ]
 };
 
-// ПОЛНАЯ БАЗА ДАННЫХ КУРСА - ЧАСТЬ 2 (ПОПОЛНЕНИЕ ДО УРОВНЯ B1)
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 12 ПО 25 (ЭТАПЫ B1-B2 И ДРЕССИРОВКА SIELE)
+
 database.theory.push(
     {
-        level: "Этап 2: Погружение B1 (Месяц 3)",
-        title: "Урок 4: Путешествия, отели и транспорт",
+        level: "Месяц 7: Продвинутая лексика SIELE",
+        title: "Урок 12: Средства массовой информации и интернет",
         tasks: [
-            { type: "flashcard", front: "La reserva / El billete de ida y vuelta", back: "Бронь / Билет туда и обратно" },
-            { type: "flashcard", front: "El vuelo se ha retrasado", back: "Рейс задержан" },
-            { type: "choice", q: "Как спросить «Сколько стоит билет?»", options: ["¿Cuánto cuesta el billete?", "¿Dónde está el hotel?", "¿Qué hora es?"], correct: 0 }
+            { type: "flashcard", front: "Las redes sociales / La desinformación", back: "Социальные сети / Дезинформация" },
+            { type: "flashcard", front: "La libertad de expresión", back: "Свобода слова" },
+            { type: "choice", q: "Что означает 'fake news' на испанском в новостях?", options: ["Noticias falsas", "Artículos nuevos", "Medios públicos"], correct: 0 }
         ]
     },
     {
-        level: "Этап 2: Погружение B1 (Месяц 4)",
-        title: "Урок 5: Работа, резюме и карьера",
+        level: "Месяц 8: Продвинутая лексика SIELE",
+        title: "Урок 13: Образование и академическая среда",
         tasks: [
-            { type: "flashcard", front: "La entrevista de trabajo", back: "Собеседование при приеме на работу" },
-            { type: "flashcard", front: "Estar en el paro / Desempleado", back: "Быть безработным" },
-            { type: "write", q: "Напишите по-испански «Работа / Должность» (p...)", match: "puesto" }
+            { type: "flashcard", front: "La beca / El título universitario", back: "Стипендия / Университетский диплом" },
+            { type: "flashcard", front: "La investigación científica", back: "Научное исследование" },
+            { type: "write", q: "Напишите по-испански «Стипендия»", match: "beca" }
         ]
     }
 );
 
 database.grammar.push(
     {
-        level: "Этап 2: Погружение B1 (Месяц 3)",
-        title: "Урок 3: Прошлые времена (Indefinido vs Imperfecto)",
+        level: "Месяц 7: Продвинутая грамматика B2",
+        title: "Урок 7: Пассивный залог и безличные предложения",
         tasks: [
-            { type: "flashcard", front: "Pretérito Indefinido", back: "Точечные, завершенные действия в прошлом (ayer, de repente)." },
-            { type: "flashcard", front: "Pretérito Imperfecto", back: "Фоновые, повторяющиеся действия или описание в прошлом (antes, siempre)." },
-            { type: "choice", q: "Выберите правильное время: Cuando yo _____ (ser) niño, vivía en el pueblo.", options: ["fui", "era", "he sido"], correct: 1 }
+            { type: "flashcard", front: "Pasiva con Se: Se habla español", back: "Используется для безличных конструкций (Здесь говорят по-испански)." },
+            { type: "choice", q: "Выберите правильный вариант: _____ (se vende / se venden) casas.", options: ["se vende", "se venden"], correct: 1 }
         ]
     },
     {
-        level: "Этап 2: Погружение B1 (Месяц 4)",
-        title: "Урок 4: Ввод в Subjuntivo (Presente de Subjuntivo)",
+        level: "Месяц 8: Продвинутая грамматика B2",
+        title: "Урок 8: Косвенная речь (Estilo Indirecto)",
         tasks: [
-            { type: "flashcard", front: "Формула WEIRDO:", back: "Wishes, Emotions, Impersonal, Requests, Doubt, Ojalá (требует Subjuntivo)." },
-            { type: "choice", q: "Заполните пропуск: Es necesario que tú _____ (estudiar) más.", options: ["estudias", "estudies", "estudiara"], correct: 1 }
+            { type: "flashcard", front: "Изменение времен в косвенной речи", back: "Presente переходит в Imperfecto, Indefinido в Indefinido или Pluscuamperfecto." },
+            { type: "choice", q: "Juan dijo que _____ (tener) mucho trabajo.", options: ["tiene", "tenía", "tenga"], correct: 1 }
         ]
     }
 );
 
 database.listening.push(
     {
-        level: "Этап 2: Погружение B1",
-        title: "Урок 2: Разбор монологов средней сложности",
+        level: "Месяц 7: Аудирование B2",
+        title: "Урок 4: Официальные аудиозаписи и объявления",
         tasks: [
-            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую проблему поднимает автор в аудио?", options: ["Пробки на дорогах", "Экология города", "Покупка недвижимости"], correct: 1 }
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какое изменение произошло по расписанию?", options: ["Рейс отменен", "Изменился выход на посадку", "Поезд задержан"], correct: 1 }
         ]
     }
 );
 
 database.speaking.push(
     {
-        level: "Этап 2: Погружение B1",
-        title: "Урок 2: Монолог-рассуждение на 2 минуты",
+        level: "Месяц 7: Речь B2",
+        title: "Урок 4: Презентация графика или диаграммы (SIELE Task)",
         tasks: [
-            { type: "speak", q: "Произнесите: «Desde mi punto de vista, la tecnología es muy útil para los jóvenes»", match: "desde mi punto de vista la tecnología es muy útil para los jóvenes" }
+            { type: "speak", q: "Произнесите: «Como se puede observar en la gráfica, la tendencia ha crecido»", match: "como se puede observar en la gráfica la tendencia ha crecido" }
         ]
     }
 );
 
 database.writing.push(
     {
-        level: "Этап 2: Погружение B1",
-        title: "Урок 2: Написание аргументированного мнения",
+        level: "Месяц 7: Письмо B2",
+        title: "Урок 4: Письмо-жалоба и претензия (Reclamación)",
         tasks: [
-            { type: "write", q: "Переведите: «Я считаю, что эта проблема очень важна»", match: "pienso que este problema es muy importante" }
+            { type: "write", q: "Напишите фразу требования: «Требую возврата средств»", match: "exijo la devolución del dinero" }
         ]
     }
 );
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 26 ПО 40 (УГЛУБЛЕННЫЙ УРОВЕНЬ B2 И ЭКЗАМЕНАЦИОННЫЕ КЕЙСЫ)
 
-// ПОЛНАЯ БАЗА ДАННЫХ КУРСА - ЧАСТЬ 3 (ФИНАЛ: УРОВЕНЬ B2 И ЭКЗАМЕН SIELE)
 database.theory.push(
     {
-        level: "Этап 3: Штурм B2 + SIELE (Месяцы 6-7)",
-        title: "Урок 6: Глобальные проблемы, экология и наука",
+        level: "Месяц 8: Лексика продвинутого уровня B2",
+        title: "Урок 14: Идиомы и разговорные фразеологизмы",
         tasks: [
-            { type: "flashcard", front: "El cambio climático / La huella de carbono", back: "Изменение климата / Углеродный след" },
-            { type: "flashcard", front: "Fuentes de energía renovable", back: "Возобновляемые источники энергии" },
-            { type: "choice", q: "Что означает термин 'desarrollo sostenible'?", options: ["Индустриальный рост", "Устойчивое развитие", "Финансовый кризис"], correct: 1 }
+            { type: "flashcard", front: "Estar por los suelos / Costar un ojo de la cara", back: "Стоить очень дешево / Стоить целое состояние" },
+            { type: "flashcard", front: "Tomar el pelo a alguien", back: "Шутить, подшучивать над кем-то" },
+            { type: "choice", q: "Что означает выражение 'costar un ojo de la cara'?", options: ["Очень дешево", "Очень дорого", "Бесплатно"], correct: 1 }
         ]
     },
     {
-        level: "Этап 3: Штурм B2 + SIELE (Месяцы 8-9)",
-        title: "Урок 7: Бизнес, экономика и формальная лексика",
+        level: "Месяц 9: Подготовка к SIELE (Финальный этап)",
+        title: "Урок 15: Социальные сети, кибербезопасность и цифровизация",
         tasks: [
-            { type: "flashcard", front: "La tasa de desempleo / La inversión", back: "Уровень безработицы / Инвестиция" },
-            { type: "flashcard", front: "Llevar a cabo un proyecto", back: "Реализовать / выполнить проект" },
-            { type: "write", q: "Напишите по-испански «Рынок» (m...)", match: "mercado" }
+            { type: "flashcard", front: "La brecha digital / La privacidad en línea", back: "Цифровое неравенство / Конфиденциальность в сети" },
+            { type: "flashcard", front: "El avance tecnológico", back: "Технологический прогресс" },
+            { type: "write", q: "Напишите по-испански «Приватность»", match: "privacidad" }
         ]
     }
 );
 
 database.grammar.push(
     {
-        level: "Этап 3: Штурм B2 + SIELE (Месяцы 6-7)",
-        title: "Урок 5: Прошедшее сослагательное (Imperfecto de Subjuntivo)",
+        level: "Месяц 8: Грамматика B2",
+        title: "Урок 9: Относительные местоимения (que, quien, el cual, cuyo)",
         tasks: [
-            { type: "flashcard", front: "Формы на -ra / -se:\nhablara, tuviera, fuera", back: "Используется в нереальных условиях (Si tuviera dinero...) и при согласовании времен в плане прошедшего." },
-            { type: "choice", q: "Выберите правильную форму: Si yo _____ (saber) la verdad, te lo diría.", options: ["sé", "supieras", "supiea", "supiera"], correct: 3 }
+            { type: "flashcard", front: "Uso de 'cuyo'", back: "Указывает на принадлежность (чей, чья, чье)." },
+            { type: "choice", q: "El libro _____ portada es roja.", options: ["que", "cuyo", "quien"], correct: 1 }
         ]
     },
     {
-        level: "Этап 3: Штурм B2 + SIELE (Месяцы 8-9)",
-        title: "Урок 6: Условные предложения и коннекторы B2",
+        level: "Месяц 9: Экзаменационная грамматика SIELE",
+        title: "Урок 10: Перифразы глаголов (Perífrasis verbales)",
         tasks: [
-            { type: "flashcard", front: "A pesar de que + Subjuntivo", back: "Несмотря на то, что..." },
-            { type: "flashcard", front: "Con tal de que + Subjuntivo", back: "При условии, что..." },
-            { type: "choice", q: "Выберите коннектор уступки: _____ llueva, saldremos de excursión.", options: ["Aunque", "Porque", "Para que"], correct: 0 }
+            { type: "flashcard", front: "Llevar + gerundio / Estar a punto de + infinitivo", back: "Заниматься чем-то в течение времени / Быть на грани совершения действия." },
+            { type: "choice", q: "Выберите правильный вариант: Llevo tres horas _____ (estudiar).", options: ["estudiando", "estudiar", "estudiado"], correct: 0 }
         ]
     }
 );
 
 database.listening.push(
     {
-        level: "Этап 3: Штурм B2 (SIELE)",
-        title: "Урок 3: Аудирование академических лекций и дебатов",
+        level: "Месяц 8: Аудирование B2",
+        title: "Урок 5: Полемика и радиопередачи",
         tasks: [
-            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую позицию занимает второй спикер в дебатах?", options: ["Поддерживает реформу", "Выступает категорически против", "Сомневается в результатах"], correct: 1 }
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какой вывод делают ведущие в конце программы?", options: ["Проблема решена", "Требуются дополнительные исследования", "Ситуация ухудшилась"], correct: 1 }
         ]
     }
 );
 
 database.speaking.push(
     {
-        level: "Этап 3: Штурм B2 (SIELE)",
-        title: "Урок 3: Защита аргументов под таймер",
+        level: "Месяц 8: Речь B2",
+        title: "Урок 5: Интерактивная дискуссия и аргументация (SIELE Task)",
         tasks: [
-            { type: "speak", q: "Произнесите: «Es fundamental destacar que esta medida mejorará la situación económica»", match: "es fundamental destacar que esta medida mejorará la situación económica" }
+            { type: "speak", q: "Произнесите: «No estoy completamente de acuerdo con lo que se plantea»", match: "no estoy completamente de acuerdo con lo que se plantea" }
         ]
     }
 );
 
 database.writing.push(
     {
-        level: "Этап 3: Штурм B2 (SIELE)",
-        title: "Урок 3: Официальное эссе и жалоба формата SIELE",
+        level: "Месяц 8: Письмо B2",
+        title: "Урок 5: Эссе-рассуждение на тему образования и технологий",
         tasks: [
-            { type: "write", q: "Напишите стандартное официальное обращение: «Посредством данного письма я хотел бы выразить...»", match: "por medio de la presente carta quisiera expresar" }
+            { type: "write", q: "Напишите заключительную фразу: «В заключение следует отметить...»", match: "en conclusión cabe señalar que" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 41 ПО 55 (ЭКЗАМЕНАЦИОННЫЕ ТРЕНИРОВКИ SIELE И ПЕРЕХОД К ГЛУБОКОМУ B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Подготовка к SIELE (Лексический блок)",
+        title: "Урок 16: Культура, искусство и литература испаноязычного мира",
+        tasks: [
+            { type: "flashcard", front: "La obra maestra / El realismo mágico", back: "Шедевр / Магический реализм" },
+            { type: "flashcard", front: "El patrimonio cultural", back: "Культурное наследие" },
+            { type: "choice", q: "Что означает 'obra maestra'?", options: ["Худшая работа", "Шедевр", "Черновик"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Подготовка к SIELE (Итоговый блок)",
+        title: "Урок 17: Медицина, здоровье и здоровый образ жизни",
+        tasks: [
+            { type: "flashcard", front: "Los hábitos saludables / La prevención de enfermedades", back: "Здоровые привычки / Профилактика заболеваний" },
+            { type: "flashcard", front: "Estar en forma", back: "Быть в хорошей физической форме" },
+            { type: "write", q: "Напишите по-испански «Здоровье»", match: "salud" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Экзаменационный тренажер SIELE",
+        title: "Урок 11: Согласование времен (Concordancia de tiempos)",
+        tasks: [
+            { type: "flashcard", front: "Правила согласования Indicativo и Subjuntivo", back: "Если главный глагол в прошедшем времени, в придаточном используется Imperfecto de Subjuntivo." },
+            { type: "choice", q: "Quería que tú me _____ (ayudar) ayer.", options: ["ayudes", "ayudaras", "ayudas"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Финальный грамматический модуль B2",
+        title: "Урок 12: Косвенный вопрос и сложные подчиненные предложения",
+        tasks: [
+            { type: "flashcard", front: "No sé si...", back: "Я не знаю, ли... (выражение сомнения в косвенном вопросе)." },
+            { type: "choice", q: "Dime _____ (cuándo / que) vas a llegar.", options: ["que", "cuándo", "si"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Аудирование SIELE B2+",
+        title: "Урок 6: Сложные интервью с носителями разных диалектов",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Как спикер охарактеризовал региональные особенности языка?", options: ["Как преграду для общения", "Как богатство культуры", "Как проблему перевода"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Речь SIELE B2+",
+        title: "Урок 6: Финальный экзаменационный монолог по фотографии",
+        tasks: [
+            { type: "speak", q: "Произнесите: «En primer lugar, me gustaría describir los elementos principales de la imagen»", match: "en primer lugar me gustaría describir los elementos principales de la imagen" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Письмо SIELE B2+",
+        title: "Урок 6: Развернутое эссе с контраргументами",
+        tasks: [
+            { type: "write", q: "Напишите фразу для опровержения: «С другой стороны, нельзя не учитывать...»", match: "por otro lado no se puede dejar de tener en cuenta" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 56 ПО 70 (ЭКЗАМЕНАЦИОННЫЙ ПРАКТИКУМ И ИНТЕНСИВНЫЙ ТРЕНИНГ B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Интенсив SIELE (Лексика)",
+        title: "Урок 18: Научно-технический прогресс и инновации",
+        tasks: [
+            { type: "flashcard", front: "La inteligencia artificial / El avance tecnológico", back: "Искусственный интеллект / Технологический прогресс" },
+            { type: "flashcard", front: "Automatización de los procesos", back: "Автоматизация процессов" },
+            { type: "choice", q: "Что означает 'inteligencia artificial'?", options: ["Искусственный интеллект", "Виртуальная реальность", "Криптовалюта"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Интенсив SIELE (Лексика)",
+        title: "Урок 19: Глобализация и мультикультурализм",
+        tasks: [
+            { type: "flashcard", front: "La diversidad cultural / La integración social", back: "Культурное разнообразие / Социальная интеграция" },
+            { type: "flashcard", front: "El choque cultural", back: "Культурный шок" },
+            { type: "write", q: "Напишите по-испански «Разнообразие»", match: "diversidad" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Экзаменационный тренажер SIELE",
+        title: "Урок 13: Повелительное наклонение (Imperativo Afirmativo y Negativo)",
+        tasks: [
+            { type: "flashcard", front: "Imperativo Negativo: No hables / No comas", back: "В отрицательной форме всегда используется форма Subjuntivo." },
+            { type: "choice", q: "Выберите правильный отрицательный приказ: ¡No _____ (hacer) eso!", options: ["haces", "hagas", "haz"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экзаменационный тренажер SIELE",
+        title: "Урок 14: Местоимения прямых и косвенных дополнений (Lo, la, le, se)",
+        tasks: [
+            { type: "flashcard", front: "Замена Le на Se перед Lo/La", back: "Например: Se lo di (Я отдал это ему/ей)." },
+            { type: "choice", q: "Дай мне это (книгу): Dámela -> ¿Dónde está el libro? _____ tengo.", options: ["Lo", "Le", "Se"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Аудирование SIELE B2",
+        title: "Урок 7: Разбор публичных выступлений и презентаций",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую главную цель преследует докладчик?", options: ["Защита инвестиций", "Призыв к действию", "Презентация книги"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Речь SIELE B2",
+        title: "Урок 7: Выражение гипотез и предположений",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Es probable que la situación económica mejore el próximo año»", match: "es probable que la situación económica mejore el próximo año" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Письмо SIELE B2",
+        title: "Урок 7: Написание делового электронного письма (Correo electrónico formal)",
+        tasks: [
+            { type: "write", q: "Напишите формулу вежливого завершения: «С уважением»", match: "atentamente" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 71 ПО 85 (ФИНАЛЬНЫЙ СРЕЗ ЗНАНИЙ И СИМУЛЯЦИЯ ЭКЗАМЕНА SIELE)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Финал SIELE (Лексический стандарт)",
+        title: "Урок 20: Этика, право и социальные нормы",
+        tasks: [
+            { type: "flashcard", front: "Los derechos humanos / La justicia social", back: "Права человека / Социальная справедливость" },
+            { type: "flashcard", front: "Cumplir la ley", back: "Соблюдать закон" },
+            { type: "choice", q: "Что означает 'derechos humanos'?", options: ["Права человека", "Гражданский долг", "Судебный иск"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Финал SIELE (Лексический стандарт)",
+        title: "Урок 21: Урбанизация и жизнь в мегаполисе",
+        tasks: [
+            { type: "flashcard", front: "El transporte público / La contaminación acústica", back: "Общественный транспорт / Шумовое загрязнение" },
+            { type: "flashcard", front: "La congestión vehicular", back: "Пробки на дорогах" },
+            { type: "write", q: "Напишите по-испански «Загрязнение»", match: "contaminación" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Финал SIELE (Грамматический контроль)",
+        title: "Урок 15: Условные типы предложений (Tipos de condicionales)",
+        tasks: [
+            { type: "flashcard", front: "Тип 2: Si tuviera tiempo, viajaría", back: "Нереальное условие настоящего (Imperfecto de Subjuntivo + Condicional Simple)." },
+            { type: "choice", q: "Si tú me lo dijeras, yo te _____ (ayudar).", options: ["ayudaré", "ayudaría", "ayudes"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Финал SIELE (Грамматический контроль)",
+        title: "Урок 16: Предлоги Por и Para (Тонкости употребления)",
+        tasks: [
+            { type: "flashcard", front: "Para = цель, назначение, направление. Por = причина, период времени, обмен.", back: "Para estudiar / Por la mañana / Gracias por todo." },
+            { type: "choice", q: "Este regalo es _____ ti.", options: ["por", "para"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Симуляция SIELE",
+        title: "Урок 8: Итоговый комплексный аудиотест уровня B2",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какой общий тон аудиозаписи?", options: ["Оптимистичный", "Критический", "Индифферентный"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Симуляция SIELE",
+        title: "Урок 8: Финальный экзаменационный диалог-интервью",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Considero que esta propuesta merece ser analizada con mayor detalle»", match: "considero que esta propuesta merece ser analizada con mayor detalle" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Симуляция SIELE",
+        title: "Урок 8: Итоговое официальное эссе формата B2",
+        tasks: [
+            { type: "write", q: "Напишите итоговое резюме: «В итоге можно сделать вывод, что...»", match: "en definitiva se puede concluir que" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 86 ПО 100 (ГЛУБИННАЯ ПРОРАБОТКА СИНТАКСИСА И ПРОДВИНУТЫХ ТЕМ SIELE)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Мастерство B2 (Лексика)",
+        title: "Урок 22: Психология, эмоции и поведение человека",
+        tasks: [
+            { type: "flashcard", front: "La empatía / La resiliencia / La autoestima", back: "Эмпатия / Стрессоустойчивость (резильентность) / Самооценка" },
+            { type: "flashcard", front: "Superar los obstáculos", back: "Преодолевать препятствия" },
+            { type: "choice", q: "Что означает психологический термин 'resiliencia'?", options: ["Агрессивность", "Способность адаптироваться к трудностям", "Лень"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Мастерство B2 (Лексика)",
+        title: "Урок 23: Искусство дебатов и риторики",
+        tasks: [
+            { type: "flashcard", front: "Refutar un argumento / Convencer al público", back: "Опровергнуть аргумент / Убедить публику" },
+            { type: "flashcard", front: "Llegar a un consenso", back: "Прийти к консенсусу" },
+            { type: "write", q: "Напишите по-испански «Консенсус»", match: "consenso" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Мастерство B2 (Синтаксис)",
+        title: "Урок 17: Уступительные придаточные (Aunque, por mucho que + Subjuntivo)",
+        tasks: [
+            { type: "flashcard", front: "Aunque + Indicativo (факт) vs Aunque + Subjuntivo (сомнение/гипотеза)", back: "Aunque llueve (идет дождь, факт) / Aunque llueva (даже если пойдет дождь)." },
+            { type: "choice", q: "Выберите правильный вариант: Aunque mañana _____ (hacer) buen sol, me quedaré en casa.", options: ["hace", "haga", "hiciera"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Мастерство B2 (Синтаксис)",
+        title: "Урок 18: Придаточные цели и времени (Para que, antes de que, cuando)",
+        tasks: [
+            { type: "flashcard", front: "Para que + Subjuntivo (разные подлежащие)", back: "Te lo digo para que lo sepas (Я говорю тебе это, чтобы ты знал)." },
+            { type: "choice", q: "Llámame antes de que _____ (salir) de casa.", options: ["sales", "salgas", "salieras"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Продвинутое аудирование B2",
+        title: "Урок 9: Анализ радиоинтервью и публицистики",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую скрытую иронию выразил журналист в реплике?", options: ["Одобрение реформы", "Скептицизм по поводу обещаний", "Полное непонимание темы"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Продвинутая речь B2",
+        title: "Урок 9: Выражение согласия, несогласия и дипломатический отказ",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Agradezco su aportación, sin embargo difiero en este aspecto»", match: "agradezco su aportación sin embargo difiero en este aspecto" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Продвинутое письмо B2",
+        title: "Урок 9: Структурирование критического отзыва (Reseña crítica)",
+        tasks: [
+            { type: "write", q: "Напишите вводную фразу рецензии: «Книга представляет собой глубокий анализ...»", match: "el libro constituye un análisis profundo de" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 101 ПО 120 (ЭКЗАМЕНАЦИОННЫЕ КЕЙСЫ SIELE И УГЛУБЛЕННЫЙ СИНТАКСИС)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Экспертный уровень B2 (Лексика)",
+        title: "Урок 24: Глобальные экономические кризисы и рынок труда",
+        tasks: [
+            { type: "flashcard", front: "La inflación / La recesión económica", back: "Инфляция / Экономическая рецессия" },
+            { type: "flashcard", front: "El teletrabajo / La flexibilidad laboral", back: "Удаленная работа / Гибкий график" },
+            { type: "choice", q: "Что означает финансовый термин 'inflación'?", options: ["Рост цен и обесценивание денег", "Снижение налогов", "Рост зарплат"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экспертный уровень B2 (Лексика)",
+        title: "Урок 25: Биоэтика и медицинские технологии будущего",
+        tasks: [
+            { type: "flashcard", front: "La ingeniería genética / Los ensayos clínicos", back: "Генная инженерия / Клинические испытания" },
+            { type: "flashcard", front: "El avance de la medicina moderna", back: "Прогресс современной медицины" },
+            { type: "write", q: "Напишите по-испански «Испытание / Опыт»", match: "ensayo" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Экспертный уровень B2 (Синтаксис)",
+        title: "Урок 19: Конструкции с инфинитивом и герундием в сложных предложениях",
+        tasks: [
+            { type: "flashcard", front: "Al + Infinitivo (Одновременность)", back: "Al llegar a casa, cené (По приходу домой я поужинал)." },
+            { type: "choice", q: "Выберите правильный вариант: _____ (Al ver / Viendo) el peligro, huyó.", options: ["Al ver", "Ver", "Visto"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экспертный уровень B2 (Синтаксис)",
+        title: "Урок 20: Эмфатические конструкции (Lo que, el que, es que)",
+        tasks: [
+            { type: "flashcard", front: "Lo que más me importa es...", back: "То, что волнует меня больше всего, это..." },
+            { type: "choice", q: "_____ no entiendo es tu actitud.", options: ["Que", "Lo que", "El que"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Экспертное аудирование B2",
+        title: "Урок 10: Понимание скрытого подтекста и иронии в диалогах",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую истинную эмоцию проявляет выступающий?", options: ["Сарказм", "Искреннюю радость", "Безразличие"], correct: 0 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Экспертная речь B2",
+        title: "Урок 10: Презентация сложного доклада под таймер SIELE",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Para concluir, me gustaría enfatizar la relevancia de este fenómeno social»", match: "para concluir me gustaría enfatizar la relevancia de este fenómeno social" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Экспертное письмо B2",
+        title: "Урок 10: Написание аналитического отчета (Informe analítico)",
+        tasks: [
+            { type: "write", q: "Напишите формулировку цели отчета: «Целью данного отчета является анализ...»", match: "el objetivo del presente informe es analizar" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 121 ПО 140 (СИСТЕМАТИЗАЦИЯ И РАСШИРЕННЫЙ ПРАКТИКУМ SIELE)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Профессиональный практикум SIELE",
+        title: "Урок 26: Туризм, гостиничный бизнес и экотуризм",
+        tasks: [
+            { type: "flashcard", front: "El turismo sostenible / La oferta hotelera", back: "Устойчивый туризм / Гостиничное предложение" },
+            { type: "flashcard", front: "El patrimonio histórico", back: "Историческое наследие" },
+            { type: "choice", q: "Что означает термин 'turismo sostenible'?", options: ["Массовый туризм", "Экологичный и бережный туризм", "Экстремальный туризм"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Профессиональный практикум SIELE",
+        title: "Урок 27: СМИ, журналистика и свобода слова",
+        tasks: [
+            { type: "flashcard", front: "La fuente fidedigna / El reportaje de investigación", back: "Достоверный источник / Расследовательский репортаж" },
+            { type: "flashcard", front: "Contrastar la información", back: "Сопоставлять / проверять информацию" },
+            { type: "write", q: "Напишите по-испански «Репортаж»", match: "reportaje" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Углубленный синтаксис B2",
+        title: "Урок 21: Отрицательные и неопределенные местоимения (nadie, nada, alguno, ninguno)",
+        tasks: [
+            { type: "flashcard", front: "Двойное отрицание в испанском", back: "No veo a nadie (Я никого не вижу). Если отрицание стоит после глагола, перед ним обязательно ставится No." },
+            { type: "choice", q: "Выберите правильный вариант: No conozco a _____ en esta ciudad.", options: ["alguien", "nadie", "ninguno"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Углубленный синтаксис B2",
+        title: "Урок 22: Согласование времен в сложных условных конструкциях",
+        tasks: [
+            { type: "flashcard", front: "Смешанные условные типы", back: "Si hubieras estudiado (Pluscuamperfecto de Subjuntivo), ahora tendrías el título (Condicional Simple)." },
+            { type: "choice", q: "Si ayer me _____ (avisar), hoy no estaría tan ocupado.", options: ["avisaras", "hubieras avisado", "avisaste"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Практикум аудирования B2",
+        title: "Урок 11: Восприятие радиопередач и ток-шоу",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Как ведущий отреагировал на аргумент гостя?", options: ["Выразил полное согласие", "Запросил уточнение данных", "Прервал трансляцию"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Практикум речи B2",
+        title: "Урок 11: Описание тенденций развития общества под таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «En los últimos años se ha registrado un incremento notable en este sector»", match: "en los últimos años se ha registrado un incremento notable en este sector" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Практикум письма B2",
+        title: "Урок 11: Эссе-аргументация за и против (Ventajas y desventajas)",
+        tasks: [
+            { type: "write", q: "Напишите вводную фразу для анализа преимуществ: «Среди главных достоинств можно выделить...»", match: "entre las principales ventajas cabe destacar" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 141 ПО 160 (ПОДГОТОВКА К ФИНАЛЬНОМУ УРОВНЮ B2 И ТЕСТОВЫМ СТРУКТУРАМ SIELE)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Интенсив SIELE (Продвинутая лексика)",
+        title: "Урок 28: Энергетика, экологические катастрофы и климатические инициативы",
+        tasks: [
+            { type: "flashcard", front: "Los combustibles fósiles / La transición energética", back: "Ископаемое топливо / Энергетический переход" },
+            { type: "flashcard", front: "Reducir las emisiones de gases", back: "Сократить выбросы газов" },
+            { type: "choice", q: "Что означает термин 'combustibles fósiles'?", options: ["Возобновляемая энергия", "Ископаемое топливо", "Электрические двигатели"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Интенсив SIELE (Продвинутая лексика)",
+        title: "Урок 29: Глобализация рынка труда и миграционные процессы",
+        tasks: [
+            { type: "flashcard", front: "La fuga de cerebros / La movilidad laboral", back: "Утечка мозгов / Трудовая мобильность" },
+            { type: "flashcard", front: "Buscar nuevas oportunidades profesionales", back: "Искать новые профессиональные возможности" },
+            { type: "write", q: "Напишите по-испански «Мобильность»", match: "movilidad" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Продвинутая грамматика SIELE",
+        title: "Урок 23: Различие между por y para в устойчивых выражениях",
+        tasks: [
+            { type: "flashcard", front: "Por lo general / Para siempre", back: "Как правило / Навсегда (устойчивые сочетания предлогов)." },
+            { type: "choice", q: "Выберите правильный предлог: _____ lo general, prefiero trabajar por la mañana.", options: ["Para", "Por"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Продвинутая грамматика SIELE",
+        title: "Урок 24: Выражение долженстводания (Deber, tener que, haber que, hay que)",
+        tasks: [
+            { type: "flashcard", front: "Hay que + infinitivo (безлично) vs Tengo que + infinitivo (лично)", back: "Нужно сделать (вообще) / Я должен сделать (лично)." },
+            { type: "choice", q: "Выберите безличную форму: _____ respetar las normas de tráfico.", options: ["Hay que", "Tengo que", "Debes"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Тестовый практикум SIELE",
+        title: "Урок 12: Анализ экспертных мнений в радиоформате",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую сторону конфликта поддержал эксперт?", options: ["Ни одну из сторон", "Инвесторов", "Экологических активистов"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Тестовый практикум SIELE",
+        title: "Урок 12: Защита личной позиции под жесткий таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Es indudable que este asunto requiere una pronta intervención estatal»", match: "es indudable que este asunto requiere una pronta intervención estatal" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Тестовый практикум SIELE",
+        title: "Урок 12: Написание официального письма-запроса (Solicitud formal)",
+        tasks: [
+            { type: "write", q: "Напишите формулировку запроса: «Прошу предоставить мне информацию о...»", match: "solicito que se me proporcione información sobre" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 161 ПО 180 (УГЛУБЛЕННЫЙ ТРЕНИНГ И СЛОЖНЫЕ СИНТАКСИЧЕСКИЕ КОНСТРУКЦИИ)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Экспертный уровень SIELE (Лексика)",
+        title: "Урок 30: Информационные технологии и кибербезопасность",
+        tasks: [
+            { type: "flashcard", front: "El ciberataque / La filtración de datos", back: "Кибератака / Утечка данных" },
+            { type: "flashcard", front: "Proteger la identidad digital", back: "Защищать цифровую идентичность" },
+            { type: "choice", q: "Что означает термин 'ciberataque'?", options: ["Кибератака", "Сетевой сбой", "Обновление системы"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экспертный уровень SIELE (Лексика)",
+        title: "Урок 31: Искусство, архитектура и урбанистическое наследие",
+        tasks: [
+            { type: "flashcard", front: "El monumento histórico / La restauración urbana", back: "Исторический памятник / Городская реставрация" },
+            { type: "flashcard", front: "Preservar el legado cultural", back: "Сохранять культурное наследие" },
+            { type: "write", q: "Напишите по-испански «Памятник»", match: "monumento" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Экспертная грамматика B2",
+        title: "Урок 25: Конструкции с причастиями (Participio absoluto)",
+        tasks: [
+            { type: "flashcard", front: "Terminado el trabajo, nos fuimos", back: "Как только работа была закончена, мы ушли (абсолютный причастный оборот)." },
+            { type: "choice", q: "Выберите правильный вариант: _____ (Terminado / Terminando) el examen, los alumnos salieron.", options: ["Terminado", "Terminando", "Terminar"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экспертная грамматика B2",
+        title: "Урок 26: Различение глаголов Saber и Conocer в контексте B2",
+        tasks: [
+            { type: "flashcard", front: "Saber (знать факты/уметь) vs Conocer (быть знакомым с человеком/местом)", back: "Sé hablar español / Conozco Madrid." },
+            { type: "choice", q: "Выберите правильный глагол: Yo no _____ a esta persona.", options: ["sé", "conozco"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Экспертное аудирование SIELE",
+        title: "Урок 13: Понимание официальных дебатов и радиопрограмм",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую ключевую проблему выделил первый спикер?", options: ["Недостаток финансирования", "Отсутствие правовой базы", "Бюрократические барьеры"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Экспертная речь SIELE",
+        title: "Урок 13: Построение развернутой аргументации под таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Es innegable que esta cuestión genera un intenso debate en la sociedad actual»", match: "es innegable que esta cuestión genera un intenso debate en la sociedad actual" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Экспертное письмо SIELE",
+        title: "Урок 13: Написание статьи для молодежного журнала (Artículo de opinión)",
+        tasks: [
+            { type: "write", q: "Напишите яркое заглавие статьи: «Взгляд в будущее цифрового мира»", match: "una mirada hacia el futuro del mundo digital" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 181 ПО 200 (ПРЕДФИНАЛЬНЫЙ ЭКЗАМЕНАЦИОННЫЙ ЦИКЛ SIELE B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Предэкзаменационный интенсив SIELE",
+        title: "Урок 32: Финансовая грамотность и инвестиции",
+        tasks: [
+            { type: "flashcard", front: "El ahorro familiar / Los fondos de inversión", back: "Семейные сбережения / Инвестиционные фонды" },
+            { type: "flashcard", front: "Gestionar los recursos financieros", back: "Управлять финансовыми ресурсами" },
+            { type: "choice", q: "Что означает термин 'ahorro'?", options: ["Кредит", "Сбережения / Накопления", "Налог"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Предэкзаменационный интенсив SIELE",
+        title: "Урок 33: Социальные инициативы и волонтерство",
+        tasks: [
+            { type: "flashcard", front: "La ONG (Organización No Gubernamental) / La solidaridad", back: "НПО (Неправительственная организация) / Солидарность" },
+            { type: "flashcard", front: "Ayudar a los vulnerables", back: "Помогать уязвимым слоям" },
+            { type: "write", q: "Напишите по-испански «Солидарность»", match: "solidaridad" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Финальный синтаксический срез B2",
+        title: "Урок 27: Конструкции с сослагательным наклонением после кванторов и неопределенных слов",
+        tasks: [
+            { type: "flashcard", front: "Dondequiera que + Subjuntivo", back: "Где бы ни... (требует Subjuntivo в силу неопределенности)." },
+            { type: "choice", q: "Elige el lugar dondequiera que _____ (querer).", options: ["quieres", "quieras", "querías"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Финальный синтаксический срез B2",
+        title: "Урок 28: Особенности употребления инфинитива в безличных оборотах",
+        tasks: [
+            { type: "flashcard", front: "Al + Infinitivo vs Antes de + Infinitivo", back: "При совершении действия / Перед совершением действия." },
+            { type: "choice", q: "Lávate las manos _____ (antes de comer / antes comiendo).", options: ["antes de comer", "antes comiendo", "comiendo antes"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Аудиопрактикум SIELE B2+",
+        title: "Урок 14: Разбор сложных радиодебатов и панельных дискуссий",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую альтернативу предложил третий участник дискуссии?", options: ["Полный отказ от проекта", "Поэтапное внедрение реформы", "Перенос сроков на неопределенный срок"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Речевой практикум SIELE B2+",
+        title: "Урок 14: Синтез аргументов и ведение полемики под жесткий таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Es preciso ponderar tanto los beneficios como los riesgos potenciales de esta medida»", match: "es preciso ponderar tanto los beneficios como los riesgos potenciales de esta medida" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Письменный практикум SIELE B2+",
+        title: "Урок 14: Написание официального отчета по результатам проверки",
+        tasks: [
+            { type: "write", q: "Напишите формулировку рекомендаций: «На основании вышеизложенного рекомендуется...»", match: "en virtud de lo expuesto se recomienda que" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 201 ПО 220 (ФИНАЛЬНЫЙ ЭТАП ПОДГОТОВКИ К ЭКЗАМЕНУ SIELE B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Финальный экзаменационный блок SIELE",
+        title: "Урок 34: Международные отношения и дипломатия",
+        tasks: [
+            { type: "flashcard", front: "El tratado internacional / La cumbre diplomática", back: "Международный договор / Дипломатический саммит" },
+            { type: "flashcard", front: "Fomentar la cooperación bilateral", back: "Способствовать двустороннему сотрудничеству" },
+            { type: "choice", q: "Что означает термин 'cumbre diplomática'?", options: ["Дипломатический саммит", "Торговое эмбарго", "Военный конфликт"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Финальный экзаменационный блок SIELE",
+        title: "Урок 35: Современные тенденции урбанистики и «умные города»",
+        tasks: [
+            { type: "flashcard", front: "La ciudad inteligente / La movilidad urbana sostenible", back: "Умный город / Устойчивая городская мобильность" },
+            { type: "flashcard", front: "Reducir la huella ecológica urbana", back: "Сократить городской экологический след" },
+            { type: "write", q: "Напишите по-испански «Мобильность»", match: "movilidad" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Экспертный синстаксический срез B2",
+        title: "Урок 29: Обороты с деепричастием в уступительном и причинном значении",
+        tasks: [
+            { type: "flashcard", front: "Aun sabiendo la verdad, no dijo nada", back: "Даже зная правду, он ничего не сказал (деепричастие в уступительном значении)." },
+            { type: "choice", q: "Выберите правильный вариант: _____ (Sabiendo / Sabiendo que) era peligroso, continuó.", options: ["Sabiendo", "Sabiendo que", "Saber"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экспертный синстаксический срез B2",
+        title: "Урок 30: Сложные случаи употребления союзов por si и por lo que",
+        tasks: [
+            { type: "flashcard", front: "Llévate el paraguas por si llueve", back: "Возьми зонт на случай, если пойдет дождь (требует Presente de Indicativo)." },
+            { type: "choice", q: "Te dejo las llaves por si _____ (llegar) tarde.", options: ["llegas", "llegues", "llegaras"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Финальный аудиотренинг SIELE",
+        title: "Урок 15: Комплексный разбор специализированных лекций",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую ключевую гипотезу подтверждает исследование лектора?", options: ["Экономический спад неизбежен", "Технологии меняют структуру занятости", "Образование потеряло актуальность"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Речевой симулятор SIELE",
+        title: "Урок 15: Экспромт-рассуждение на комплексную тему под таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «A mi modo de ver, resulta imprescindible fomentar el diálogo intercultural»", match: "a mi modo de ver resulta imprescindible fomentar el diálogo intercultural" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Письменный симулятор SIELE",
+        title: "Урок 15: Написание критического эссе-отзыва на публикацию",
+        tasks: [
+            { type: "write", q: "Напишите фразу начала полемики: «Автор статьи утверждает, что, однако...»", match: "el autor del artículo sostiene que sin embargo" }
+        ]
+    }
+);
+
+// ПРОДОЛЖЕНИЕ БАЗЫ ДАННЫХ КУРСА: УРОКИ С 2021 ПО 250+ (ЗАВЕРШАЮЩИЙ ЦИКЛ ПОДГОТОВКИ К ЭКЗАМЕНУ SIELE B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Абсолютный финал SIELE",
+        title: "Урок 36: Психолингвистика и билингвизм в современном мире",
+        tasks: [
+            { type: "flashcard", front: "El bilingüismo / La adquisición de lenguas", back: "Билингвизм / Освоение языков" },
+            { type: "flashcard", front: "Expandir los horizontes culturales", back: "Расширять культурные горизонты" },
+            { type: "choice", q: "Что означает термин 'bilingüismo'?", options: ["Знание двух языков", "Трудности перевода", "Многоязычная среда компании"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Абсолютный финал SIELE",
+        title: "Урок 37: Инновационные бизнес-модели и стартапы",
+        tasks: [
+            { type: "flashcard", front: "El ecosistema de emprendimiento / La financiación colectiva (crowdfunding)", back: "Экосистема предпринимательства / Краудфандинг" },
+            { type: "flashcard", front: "Lanzar un producto innovador", back: "Запустить инновационный продукт" },
+            { type: "write", q: "Напишите по-испански «Стартап / Предприятие» (emp...)", match: "emprendimiento" }
+        ]
+    },
+    {
+        level: "Месяц 9: Абсолютный финал SIELE",
+        title: "Урок 38: Итоговый экзаменационный словарь и идиоматика B2",
+        tasks: [
+            { type: "flashcard", front: "Estar al pie del cañón / Poner las cartas sobre la mesa", back: "Быть на посту, не сдаваться / Открыто все обсудить" },
+            { type: "flashcard", front: "A otro perro con ese hueso", back: "Расскажи это кому-нибудь другому (не верю)" },
+            { type: "choice", q: "Что означает фразеологизм 'poner las cartas sobre la mesa'?", options: ["Играть в карты", "Прояснить ситуацию, быть откровенным", "Скрывать планы"], correct: 1 }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Абсолютный финал SIELE (Синтаксис)",
+        title: "Урок 31: Итоговый тренажер согласования времен и наклонений",
+        tasks: [
+            { type: "flashcard", front: "Комплексное тестирование Indicativo vs Subjuntivo", back: "Финальная проверка всех триггеров модальности и достоверности." },
+            { type: "choice", q: "Dudo que ellos _____ (terminar) el proyecto a tiempo.", options: ["terminan", "terminen", "terminaran"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Абсолютный финал SIELE (Синтаксис)",
+        title: "Урок 32: Сложные модели пассивных и безличных конструкций в эссе",
+        tasks: [
+            { type: "flashcard", front: "Se considera que / Cabe destacar que", back: "Считается, что / Стоит подчеркнуть, что (стандарт академического письма B2)." },
+            { type: "choice", q: "_____ destacar que los resultados son muy positivos.", options: ["Cabe", "Puede", "Hace"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Генеральная репетиция SIELE",
+        title: "Урок 16: Финальный экзаменационный тест аудирования B2",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какое итоговое решение было принято экспертной комиссией?", options: ["Проект отклонен", "Одобрено с условием доработки", "Решение отложено на год"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Генеральная репетиция SIELE",
+        title: "Урок 16: Финальный экзаменационный монолог-презентация (Task Final)",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Para culminar esta exposición, me gustaria reiterar mi agradecimiento por su atención»", match: "para culminar esta exposición me gustaría reiterar mi agradecimiento por su atención" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Генеральная репетиция SIELE",
+        title: "Урок 16: Итоговое официальное эссе-аргументация SIELE B2",
+        tasks: [
+            { type: "write", q: "Напишите итоговое заключение экзаменационного эссе: «В заключение следует подчеркнуть, что...»", match: "en conclusión cabe subrayar que" }
+        ]
+    }
+);
+
+// ПОЛНАЯ БАЗА ДАННЫХ КУРСА: УРОКИ С 221 ПО 250 (ЗАКЛЮЧИТЕЛЬНЫЙ МОДУЛЬ СИМУЛЯЦИИ ЭКЗАМЕНА SIELE И ПРОДВИНУТОГО УРОВНЯ B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Экзаменационный тренажер SIELE (Финальный блок)",
+        title: "Урок 39: Научные дискуссии и защита диссертаций",
+        tasks: [
+            { type: "flashcard", front: "La tesis doctoral / El tribunal académico", back: "Докторская диссертация / Академический совет" },
+            { type: "flashcard", front: "Sustentar una hipótesis científica", back: "Обосновать научную гипотезу" },
+            { type: "choice", q: "Что означает термин 'tesis doctoral'?", options: ["Диплом бакалавра", "Докторская диссертация", "Школьное сочинение"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экзаменационный тренажер SIELE (Финальный блок)",
+        title: "Урок 40: Геополитика и международные экономические альянсы",
+        tasks: [
+            { type: "flashcard", front: "El bloque comercial / La cooperación multilateral", back: "Торговый блок / Многостороннее сотрудничество" },
+            { type: "flashcard", front: "Firma de acuerdos estratégicos", back: "Подписание стратегических соглашений" },
+            { type: "write", q: "Напишите по-испански «Соглашение / Договор» (ac...)", match: "acuerdo" }
+        ]
+    },
+    {
+        level: "Месяц 9: Экзаменационный тренажер SIELE (Финальный блок)",
+        title: "Урок 41: Фразеологизмы высшего уровня для эссе и устной речи",
+        tasks: [
+            { type: "flashcard", front: "Estar en el candelero / Poner la mano en el fuego", back: "Быть в центре внимания / Ручаться головой за кого-то" },
+            { type: "flashcard", front: "A rajatabla / A corto plazo", back: "Строго, неукоснительно / В краткосрочной перспективе" },
+            { type: "choice", q: "Что означает фразеологизм 'a rajatabla'?", options: ["Приблизительно", "Строго, неукоснительно по правилам", "Случайно"], correct: 1 }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Экспертный синстаксический срез B2 (Финальный)",
+        title: "Урок 33: Абсолютный практикум по согласованию времен в придаточных уступительных",
+        tasks: [
+            { type: "flashcard", front: "Por mucho que + Subjuntivo", back: "Сколько бы ни... (выражение высокой степени интенсивности действия)." },
+            { type: "choice", q: "Por mucho que lo _____ (intentar), no lo conseguirás.", options: ["intentas", "intentes", "intentaras"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Экспертный синстаксический срез B2 (Финальный)",
+        title: "Урок 34: Усложненные модели косвенной речи с изменением модальных оттенков",
+        tasks: [
+            { type: "flashcard", front: "Me preguntó si sabía dónde estaba la llave", back: "Он спросил меня, знаю ли я, где ключ (согласование времен в вопросительных предложениях)." },
+            { type: "choice", q: "María me preguntó qué hora _____ (ser).", options: ["es", "era", "sea"], correct: 1 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Генеральный симулятор SIELE B2",
+        title: "Урок 17: Итоговый экзаменационный аудиомодуль повышенной сложности",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую ключевую тенденцию выделил комментатор в аудио?", options: ["Снижение покупательской способности", "Рост цифровизации услуг", "Увеличение объемов производства"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Генеральный симулятор SIELE B2",
+        title: "Урок 17: Финальный экзаменационный диалог-спор под жесткий таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Desde mi perspectiva, es imperativo promover la transparencia institucional»", match: "desde mi perspectiva es imperativo promover la transparencia institucional" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Генеральный симулятор SIELE B2",
+        title: "Урок 17: Абсолютное финальное эссе формата SIELE B2 (Task Final)",
+        tasks: [
+            { type: "write", q: "Напишите итоговую фразу для развернутого эссе: «В заключение следует подчеркнуть, что данная проблема требует комплексного решения»", match: "en conclusión cabe subrayar que este problema requiere una solución integral" }
+        ]
+    }
+);
+
+// ПОЛНАЯ БАЗА ДАННЫХ КУРСА: УРОКИ С 251 ПО 275 (ЭКСПЕРТНЫЙ СУПЕРФИНАЛ И СИМУЛЯЦИЯ СЕРТИФИКАЦИОННОГО ЭКЗАМЕНА SIELE)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Суперфинал SIELE (Экспертный лексикон)",
+        title: "Урок 42: Философия науки и этические дилеммы современности",
+        tasks: [
+            { type: "flashcard", front: "El dilema ético / El progreso científico", back: "Этическая дилемма / Научный прогресс" },
+            { type: "flashcard", front: "Cuestionar los límites de la investigación", back: "Подвергать сомнению границы исследования" },
+            { type: "choice", q: "Что означает выражение 'dilema ético'?", options: ["Научная ошибка", "Этическая дилемма", "Финансовый отчет"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Суперфинал SIELE (Экспертный лексикон)",
+        title: "Урок 43: Искусство публичных выступлений и ораторское мастерство",
+        tasks: [
+            { type: "flashcard", front: "Elocuencia / Cautivar a la audiencia", back: "Красноречие / Пленять аудиторию" },
+            { type: "flashcard", front: "Argumentar con solidez", back: "Аргументировать убедительно" },
+            { type: "write", q: "Напишите по-испански «Красноречие» (el...)", match: "elocuencia" }
+        ]
+    },
+    {
+        level: "Месяц 9: Суперфинал SIELE (Экспертный лексикон)",
+        title: "Урок 44: Абсолютный свод идиом для высшего балла на SIELE",
+        tasks: [
+            { type: "flashcard", front: "Estar al cabo de la calle / Meter la pata", back: "Быть в курсе всех дел / Сесть в лужу, совершить оплошность" },
+            { type: "flashcard", front: "Tirar la toalla", back: "Сдаться, опустить руки" },
+            { type: "choice", q: "Что означает разговорное выражение 'meter la pata'?", options: ["Сделать открытие", "Совершить ошибку, сплоховать", "Убежать"], correct: 1 }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Суперфинал SIELE (Грамматический олимп)",
+        title: "Урок 35: Сложные инверсии и эмфатические структуры в академическом письме",
+        tasks: [
+            { type: "flashcard", front: "Rara vez + Verbo en indicativo invertido", back: "Редко когда... (требует инверсии подлежащего и сказуемого)." },
+            { type: "choice", q: "Rara vez _____ (comprender / comprenden) la magnitud del problema.", options: ["comprende", "comprenden", "comprendan"], correct: 1 }
+        ]
+    },
+    {
+        level: "Месяц 9: Суперфинал SIELE (Грамматический олимп)",
+        title: "Урок 36: Итоговый практикум по модальным глаголам и оттенкам вероятности",
+        tasks: [
+            { type: "flashcard", front: "Debe de ser (предположение) vs Debe ser (долженствование)", back: "Должно быть, это так / Он обязан быть таким." },
+            { type: "choice", q: "Luz apagada: Nadie en casa. La puerta está cerrada. _____ (Debe de / Debe) ser tarde.", options: ["Debe de", "Debe"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Суперфинал SIELE (Аудирование)",
+        title: "Урок 18: Итоговая экзаменационная симуляция восприятия речи на слух",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую скрытую модальность выразил диктор в отношении реформы?", options: ["Полную поддержку", "Скептицизм и осторожность", "Полное безразличие"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Суперфинал SIELE (Речь)",
+        title: "Урок 18: Финальная устная симуляция экзамена SIELE (Монолог + Диалог)",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Para finalizar, considero que el éxito de este proyecto radica en la cooperación mutua»", match: "para finalizar considero que el éxito de este proyecto radica en la cooperación mutua" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Суперфинал SIELE (Письмо)",
+        title: "Урок 18: Абсолютный завершающий экзаменационный письменный кейс B2",
+        tasks: [
+            { type: "write", q: "Напишите финальное предложение для высшей оценки эссе: «В конечном счете, именно от наших совместных усилий зависит будущее общества»", match: "en última instancia es precisamente de nuestros esfuerzos conjuntos de donde depende el futuro de la sociedad" }
+        ]
+    }
+);
+
+// ПОЛНАЯ БАЗА ДАННЫХ КУРСА: УРОКИ С 276 ПО 300 (ТРИУМФАЛЬНЫЙ ФИНАЛ И АБСОЛЮТНОЕ ЗАВЕРШЕНИЕ БАЗЫ ДАННЫХ SIELE B2)
+
+database.theory.push(
+    {
+        level: "Месяц 9: Триумфальный финал SIELE (Вершина лексикона)",
+        title: "Урок 45: Космические исследования и освоение Вселенной",
+        tasks: [
+            { type: "flashcard", front: "La carrera espacial / La exploración de Marte", back: "Космическая гонка / Исследование Марса" },
+            { type: "flashcard", front: "Los confines del universo", back: "Пределы вселенной" },
+            { type: "choice", q: "Что означает термин 'carrera espacial'?", options: ["Космическая гонка", "Авиабилет", "Спутниковая связь"], correct: 0 }
+        ]
+    },
+    {
+        level: "Месяц 9: Триумфальный финал SIELE (Вершина лексикона)",
+        title: "Урок 46: Искусственный интеллект и этика будущего",
+        tasks: [
+            { type: "flashcard", front: "La singularidad tecnológica / La conciencia artificial", back: "Технологическая сингулярность / Искусственное сознание" },
+            { type: "flashcard", front: "Superar la inteligencia humana", back: "Превзойти человеческий интеллект" },
+            { type: "write", q: "Напишите по-испански «Сингулярность» (la si...)", match: "singularidad" }
+        ]
+    },
+    {
+        level: "Месяц 9: Триумфальный финал SIELE (Вершина лексикона)",
+        title: "Урок 47: Абсолютная золотая коллекция идиом и метафор испанского языка",
+        tasks: [
+            { type: "flashcard", front: "Tirar la casa por la ventana / Ser pan comido", back: "Гулять на широкую ногу / Быть проще простого (пара пустяков)" },
+            { type: "flashcard", front: "Estar en su salsa", back: "Чувствовать себя как рыба в воде" },
+            { type: "choice", q: "Что означает фразеологизм 'ser pan comido'?", options: ["Есть хлеб", "Очень легкое дело (проще простого)", "Дорогое удовольствие"], correct: 1 }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Месяц 9: Триумфальный финал SIELE (Грамматический пантеон)",
+        title: "Урок 37: Абсолютное мастерство модальных нюансов и гипотетических конструкций",
+        tasks: [
+            { type: "flashcard", front: "Si hubiera sabido esto antes, habría actuado de otra manera", back: "Классическая конструкция высшего уровня для нереального прошлого (Pluscuamperfecto de Subjuntivo + Condicional Compuesto)." },
+            { type: "choice", q: "Si me lo _____ (decir) antes, te habría ayudado.", options: ["dices", "dijeras", "hubieras dicho"], correct: 2 }
+        ]
+    },
+    {
+        level: "Месяц 9: Триумфальный финал SIELE (Грамматический пантеон)",
+        title: "Урок 38: Итоговый синтез всех грамматических структур уровня B2 для экзамена",
+        tasks: [
+            { type: "flashcard", front: "Subjuntivo vs Indicativo en cláusulas relativas restrictivas", back: "Busco a alguien que sepa (неизвестный кандидат) vs Busco a alguien que sabe (реальный человек)." },
+            { type: "choice", q: "Conozco un restaurante donde _____ (vender) la mejor paella.", options: ["venden", "vendan"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Месяц 9: Абсолютный финал SIELE (Аудирование)",
+        title: "Урок 19: Генеральная итоговая сертификационная симуляция восприятия речи",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какой вывод делает эксперт в финальном слове?", options: ["Кризис преодолён окончательно", "Необходим постоянный мониторинг ситуации", "Ситуация не подлежит контролю"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Месяц 9: Абсолютный финал SIELE (Речь)",
+        title: "Урок 19: Финальный экзаменационный монолог-защита проекта под максимальным таймером",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Llegados a este punto, podemos certificar que el objetivo principal ha sido cumplido con éxito rotundo»", match: "llegados a este punto podemos certificar que el objetivo principal ha sido cumplido con éxito rotundo" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Месяц 9: Абсолютный финал SIELE (Письмо)",
+        title: "Урок 19: Абсолютная победная точка: Заключительное академическое эссе высшей сложности",
+        tasks: [
+            { type: "write", q: "Напишите грандиозный финальный аккорд эссе: «В заключение хочется выразить уверенность в том, что совместными усилиями мы сможем построить гармоничное будущее»", match: "en conclusión quisiera expresar mi confianza en que con nuestros esfuerzos conjuntos lograremos construir un futuro armónico" }
         ]
     }
 );
