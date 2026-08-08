@@ -103,17 +103,31 @@
             requiredXP: 0,
             questions: [
                 { type: "choice", q: "Как сказать «Доброе утро»?", options: ["Buenas noches", "Buenos días", "Hola"], correct: 1 },
-                { type: "choice", q: "Переведите: «Я студент»", options: ["Yo soy estudiante", "Yo estoy estudiante", "Tú eres estudiante"], correct: 0 },
                 { type: "speak", q: "Произнесите по-испански: «Спасибо»", textToMatch: "gracias", hint: "Нажмите на микрофон и скажите 'Gracias'" }
             ]
         },
         {
             id: "module_2",
             title: "A2: Прошедшее время",
-            requiredXP: 30,
+            requiredXP: 20,
             questions: [
                 { type: "choice", q: "Ayer yo _____ (видеть) una película.", options: ["veo", "veía", "vi"], correct: 2 },
                 { type: "speak", q: "Произнесите: «Вчера я ел паэлью»", textToMatch: "ayer comí paella", hint: "Скажите 'Ayer comí paella'" }
+            ]
+        },
+        // НОВЫЙ МОДУЛЬ: Аудирование
+        {
+            id: "module_3",
+            title: "B1: Аудирование",
+            requiredXP: 40,
+            questions: [
+                { 
+                    type: "audio", 
+                    q: "Послушайте звук. Что происходит на улице?", 
+                    audioUrl: "https://actions.google.com/sounds/v1/water/rain_on_roof.ogg", // Тестовое аудио
+                    options: ["Hace sol (Солнечно)", "Está lloviendo (Идет дождь)", "Nieva (Идет снег)"], 
+                    correct: 1 
+                }
             ]
         }
     ];
@@ -205,12 +219,36 @@
                 grid.appendChild(btn);
             });
             ui.qContent.appendChild(grid);
+
         } else if (q.type === 'speak') {
             const btn = document.createElement('button');
             btn.className = 'mic-btn';
             btn.innerHTML = '🎤';
             btn.onclick = () => startSpeechRecognition(q.textToMatch, btn);
             ui.qContent.appendChild(btn);
+
+        // НОВЫЙ БЛОК ДЛЯ АУДИО
+        } else if (q.type === 'audio') {
+            // Создаем плеер
+            const audioEl = document.createElement('audio');
+            audioEl.controls = true;
+            audioEl.src = q.audioUrl;
+            audioEl.style.width = '100%';
+            audioEl.style.marginBottom = '20px';
+            audioEl.style.borderRadius = '10px';
+            ui.qContent.appendChild(audioEl);
+
+            // Создаем кнопки с ответами под плеером
+            const grid = document.createElement('div');
+            grid.className = 'options-grid';
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => checkChoice(idx, btn, q.correct);
+                grid.appendChild(btn);
+            });
+            ui.qContent.appendChild(grid);
         }
     }
 
