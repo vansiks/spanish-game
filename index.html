@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SIELE Pro: A1 до B2</title>
+    <title>SIELE Master B2: Профессиональный курс от A1 до B2</title>
     <style>
         :root {
             --primary: #58cc02;
@@ -12,59 +12,62 @@
             --secondary-dark: #1899d6;
             --theory: #ce82ff;
             --theory-dark: #a559d6;
-            --bg: #ffffff;
-            --text: #3c3c3c;
+            --grammar: #ff9600;
+            --grammar-dark: #cc7a00;
+            --bg: #f4f6f8;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
             --gray: #e5e5e5;
-            --gray-light: #f7f7f7;
             --wrong: #ff4b4b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; padding-bottom: 80px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; padding-bottom: 90px; }
 
-        header { display: flex; justify-content: space-between; padding: 15px 20px; border-bottom: 2px solid var(--gray); position: sticky; top: 0; background: white; z-index: 100; font-weight: bold; font-size: 1.2em; }
-        .xp-text { color: #ff9600; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 2px solid var(--gray); position: sticky; top: 0; background: white; z-index: 100; font-weight: bold; font-size: 1.1em; }
+        .xp-text { color: var(--grammar); font-weight: 800; }
 
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; border-top: 2px solid var(--gray); display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
-        .nav-item { text-align: center; color: #afafaf; cursor: pointer; font-size: 0.9em; font-weight: bold; width: 25%; padding: 10px 0; transition: 0.2s; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; border-top: 2px solid var(--gray); display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; box-shadow: 0 -4px 10px rgba(0,0,0,0.03); }
+        .nav-item { text-align: center; color: #95a5a6; cursor: pointer; font-size: 0.75em; font-weight: bold; width: 20%; padding: 5px 0; transition: 0.2s; }
         .nav-item.active { color: var(--secondary); }
-        .nav-icon { font-size: 1.5em; display: block; margin-bottom: 5px; }
+        .nav-icon { font-size: 1.4em; display: block; margin-bottom: 3px; }
 
-        .screen { display: none; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .screen { display: none; padding: 20px; max-width: 650px; margin: 0 auto; }
         .screen.active { display: block; }
-        .level-header { margin: 20px 0 10px; font-size: 1.4em; color: var(--text); text-align: center; border-bottom: 2px dashed var(--gray); padding-bottom: 10px; }
+        .level-header { margin: 25px 0 12px; font-size: 1.25em; color: var(--text); text-align: left; border-left: 5px solid var(--secondary); padding-left: 10px; font-weight: 800; }
         
-        .lesson-btn { width: 100%; background: white; border: 2px solid var(--gray); padding: 20px; margin-bottom: 15px; border-radius: 16px; font-size: 1.1em; font-weight: bold; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 0 var(--gray); transition: 0.1s; }
+        .lesson-btn { width: 100%; background: var(--card-bg); border: 2px solid var(--gray); padding: 18px; margin-bottom: 12px; border-radius: 16px; font-size: 1em; font-weight: bold; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 0 var(--gray); transition: 0.1s; }
         .lesson-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
         .lesson-btn.theory { border-color: var(--theory); box-shadow: 0 4px 0 var(--theory-dark); color: var(--theory-dark); }
+        .lesson-btn.grammar { border-color: var(--grammar); box-shadow: 0 4px 0 var(--grammar-dark); color: var(--grammar-dark); }
         .lesson-btn.practice { border-color: var(--primary); box-shadow: 0 4px 0 var(--primary-dark); color: var(--primary-dark); }
 
         #lesson-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 200; flex-direction: column; }
         .lesson-header { padding: 20px; display: flex; align-items: center; gap: 15px; }
-        .close-btn { background: none; border: none; font-size: 1.5em; color: #afafaf; cursor: pointer; }
+        .close-btn { background: none; border: none; font-size: 1.5em; color: #95a5a6; cursor: pointer; }
         .progress-bar-bg { flex: 1; height: 16px; background: var(--gray); border-radius: 8px; overflow: hidden; }
         .progress-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.3s; }
         
-        .lesson-body { flex: 1; padding: 20px; max-width: 600px; margin: 0 auto; width: 100%; overflow-y: auto; }
-        .q-title { font-size: 1.3em; font-weight: bold; margin-bottom: 20px; line-height: 1.4; }
+        .lesson-body { flex: 1; padding: 20px; max-width: 650px; margin: 0 auto; width: 100%; overflow-y: auto; }
+        .q-title { font-size: 1.35em; font-weight: bold; margin-bottom: 20px; line-height: 1.4; color: #2c3e50; }
         
-        .flashcard { background: transparent; width: 100%; height: 250px; perspective: 1000px; margin-bottom: 20px; cursor: pointer; }
+        .flashcard { background: transparent; width: 100%; height: 260px; perspective: 1000px; margin-bottom: 20px; cursor: pointer; }
         .flashcard-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
         .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
-        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 1.8em; font-weight: bold; border-radius: 16px; border: 2px solid var(--gray); padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 1.6em; font-weight: bold; border-radius: 16px; border: 2px solid var(--gray); padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .flashcard-front { background-color: white; color: var(--text); }
         .flashcard-back { background-color: var(--theory); color: white; transform: rotateY(180deg); border: none; }
 
         .text-input { width: 100%; padding: 15px; font-size: 1.2em; border: 2px solid var(--gray); border-radius: 12px; margin-bottom: 20px; outline: none; transition: 0.2s; }
         .text-input:focus { border-color: var(--secondary); background: #f0f9ff; }
 
-        .options-grid { display: flex; flex-direction: column; gap: 10px; }
-        .option-btn { background: white; border: 2px solid var(--gray); padding: 15px; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; text-align: left; }
+        .options-grid { display: flex; flex-direction: column; gap: 12px; }
+        .option-btn { background: white; border: 2px solid var(--gray); padding: 16px; border-radius: 12px; font-size: 1.1em; font-weight: bold; cursor: pointer; text-align: left; transition: 0.1s; }
         .option-btn.selected { background: #ddf4ff; border-color: var(--secondary); }
         .option-btn.correct { background: #d7ffb8; border-color: var(--primary); color: var(--primary-dark); }
         .option-btn.wrong { background: #ffdfe0; border-color: var(--wrong); color: var(--wrong); }
 
-        .mic-btn { display: block; margin: 30px auto; width: 80px; height: 80px; border-radius: 50%; background: var(--secondary); color: white; font-size: 2em; border: none; box-shadow: 0 4px 0 var(--secondary-dark); cursor: pointer; }
+        .mic-btn { display: block; margin: 30px auto; width: 85px; height: 85px; border-radius: 50%; background: var(--secondary); color: white; font-size: 2.2em; border: none; box-shadow: 0 4px 0 var(--secondary-dark); cursor: pointer; }
         .mic-btn.recording { background: var(--wrong); box-shadow: 0 4px 0 #cc0000; animation: pulse 1s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
@@ -73,25 +76,25 @@
         .lesson-footer.wrong-bg { background: #ffdfe0; }
         .check-btn { background: var(--primary); color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 12px; cursor: pointer; width: 100%; box-shadow: 0 4px 0 var(--primary-dark); }
         .check-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
-        #feedback-msg { display: none; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
+        #feedback-msg { display: none; font-size: 1.1em; font-weight: bold; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div>🇪🇸 SIELE Pro</div>
+    <div>🇪🇸 SIELE Master B2</div>
     <div class="xp-text">⚡ <span id="xp-counter">0</span> XP</div>
 </header>
 
-<div id="tab-theory" class="screen active">
-    <!-- Сюда уроки будут добавляться через JS -->
-</div>
+<div id="tab-theory" class="screen active"></div>
+<div id="tab-grammar" class="screen"></div>
 <div id="tab-listening" class="screen"></div>
 <div id="tab-speaking" class="screen"></div>
 <div id="tab-writing" class="screen"></div>
 
 <nav class="bottom-nav">
-    <div class="nav-item active" onclick="switchTab('theory', this)"><span class="nav-icon">📚</span> Правила</div>
+    <div class="nav-item active" onclick="switchTab('theory', this)"><span class="nav-icon">📚</span> Лексика</div>
+    <div class="nav-item" onclick="switchTab('grammar', this)"><span class="nav-icon">⚙️</span> Грамматика</div>
     <div class="nav-item" onclick="switchTab('listening', this)"><span class="nav-icon">🎧</span> Аудио</div>
     <div class="nav-item" onclick="switchTab('speaking', this)"><span class="nav-icon">🗣️</span> Речь</div>
     <div class="nav-item" onclick="switchTab('writing', this)"><span class="nav-icon">✍️</span> Письмо</div>
@@ -112,190 +115,236 @@
 </div>
 
 <script>
-// ==========================================
-// БАЗА ДАННЫХ УРОКОВ (НАЧАЛО: A1)
-// ==========================================
+// ПОЛНАЯ БАЗА ДАННЫХ КУРСА (ОТ A1 ДО B2) - ЧАСТЬ 1 (ФУНДАМЕНТ A1)
 const database = {
     theory: [
         {
-            level: "A1 (Основы)",
-            title: "Урок 1: Базовые приветствия",
+            level: "Этап 1: База A1 (Месяц 1)",
+            title: "Урок 1: Приветствия и формы вежливости",
             tasks: [
-                { type: "flashcard", front: "¡Hola!", back: "Привет!" },
-                { type: "flashcard", front: "Buenos días", back: "Доброе утро (до 12:00)" },
-                { type: "flashcard", front: "Buenas tardes", back: "Добрый день (с 12:00 до заката)" },
-                { type: "flashcard", front: "Buenas noches", back: "Добрый вечер / Спокойной ночи" },
-                { type: "flashcard", front: "Adiós", back: "До свидания" },
-                { type: "choice", q: "Как поздороваться утром?", options: ["Buenas tardes", "Buenos días", "Adiós"], correct: 1 }
+                { type: "flashcard", front: "¡Hola! ¿Qué tal?", back: "Привет! Как дела?" },
+                { type: "flashcard", front: "Buenos días / tardes / noches", back: "Доброе утро / день / вечер" },
+                { type: "flashcard", front: "Mucho gusto / Encantado", back: "Очень приятно (при знакомстве)" },
+                { type: "choice", q: "Как сказать «До свидания»?", options: ["Hola", "Adiós", "Gracias"], correct: 1 }
             ]
         },
         {
-            level: "A1 (Основы)",
+            level: "Этап 1: База A1 (Месяц 1)",
             title: "Урок 2: Личные местоимения",
             tasks: [
-                { type: "flashcard", front: "Yo", back: "Я" },
-                { type: "flashcard", front: "Tú", back: "Ты" },
-                { type: "flashcard", front: "Él / Ella", back: "Он / Она" },
-                { type: "flashcard", front: "Nosotros / Nosotras", back: "Мы (м.р. / ж.р.)" },
-                { type: "flashcard", front: "Ellos / Ellas", back: "Они (м.р. / ж.р.)" },
-                { type: "write", q: "Напишите по-испански: «Она»", match: "ella" }
+                { type: "flashcard", front: "Yo / Tú / Él / Ella", back: "Я / Ты / Он / Она" },
+                { type: "flashcard", front: "Nosotros / Vosotros / Ellos", back: "Мы / Вы / Они" },
+                { type: "write", q: "Напишите по-испански местоимение «Мы» (м.р.)", match: "nosotros" }
             ]
         },
         {
-            level: "A1 (Основы)",
-            title: "Урок 3: Глагол SER (Быть - Постоянное)",
+            level: "Этап 1: База A1 (Месяц 2)",
+            title: "Урок 3: Числа и счет от 0 до 100",
             tasks: [
-                { type: "flashcard", front: "Yo soy", back: "Я (есть)" },
-                { type: "flashcard", front: "Tú eres", back: "Ты (есть)" },
-                { type: "flashcard", front: "Él es", back: "Он (есть)" },
-                { type: "flashcard", front: "Nosotros somos", back: "Мы (есть)" },
-                { type: "flashcard", front: "Ellos son", back: "Они (есть)" },
-                { type: "choice", q: "Выберите правильную форму: Yo _____ estudiante.", options: ["eres", "soy", "es"], correct: 1 }
+                { type: "flashcard", front: "Uno, dos, tres, cuatro, cinco", back: "1, 2, 3, 4, 5" },
+                { type: "flashcard", front: "Diez, veinte, treinta, cien", back: "10, 20, 30, 100" },
+                { type: "choice", q: "Как переводится «cinco»?", options: ["3", "5", "15"], correct: 1 }
+            ]
+        }
+    ],
+    grammar: [
+        {
+            level: "Этап 1: База A1 (Месяц 1)",
+            title: "Урок 1: Глаголы SER и ESTAR",
+            tasks: [
+                { type: "flashcard", front: "SER: soy, eres, es, somos, sois, son", back: "Постоянные признаки: профессия, национальность, характер, время." },
+                { type: "flashcard", front: "ESTAR: estoy, estás, está, estamos, estáis, están", back: "Временные состояния и местоположение." },
+                { type: "choice", q: "Выберите правильный глагол: Yo _____ de Madrid (Я из Мадрида).", options: ["soy", "estoy"], correct: 0 }
             ]
         },
         {
-            level: "A1 (Основы)",
-            title: "Урок 4: Глагол ESTAR (Быть - Временно/Место)",
+            level: "Этап 1: База A1 (Месяц 2)",
+            title: "Урок 2: Настоящее время (Presente de Indicativo)",
             tasks: [
-                { type: "flashcard", front: "Yo estoy", back: "Я нахожусь / Я чувствую" },
-                { type: "flashcard", front: "Tú estás", back: "Ты находишься" },
-                { type: "flashcard", front: "Él está", back: "Он находится" },
-                { type: "choice", q: "Мы в Мадриде: Nosotros _____ en Madrid.", options: ["somos", "estamos", "están"], correct: 1 },
-                { type: "choice", q: "Как дела? (Как ты находишься?): ¿Cómo _____?", options: ["estás", "eres", "estoy"], correct: 0 }
-            ]
-        },
-        {
-            level: "A1 (Основы)",
-            title: "Урок 5: Вопросительные слова",
-            tasks: [
-                { type: "flashcard", front: "¿Qué?", back: "Что? Какой?" },
-                { type: "flashcard", front: "¿Quién?", back: "Кто?" },
-                { type: "flashcard", front: "¿Dónde?", back: "Где?" },
-                { type: "flashcard", front: "¿Cuándo?", back: "Когда?" },
-                { type: "write", q: "Переведите: «Где?»", match: "dónde" }
+                { type: "flashcard", front: "Окончания -ar:\n-o, -as, -a, -amos, -áis, -an", back: "Например: hablar -> hablo, hablas, habla..." },
+                { type: "write", q: "Напишите форму глагола hablar для «yo»:", match: "hablo" }
             ]
         }
     ],
     listening: [
         {
-            level: "A1 (Аудирование)",
-            title: "Урок 1: Распознавание приветствий",
+            level: "Этап 1: База A1",
+            title: "Урок 1: Понимание базовых диалогов",
             tasks: [
-                { type: "audio", url: "audio_a1_1.mp3", q: "Что сказал диктор?", options: ["Hola", "Adiós", "Gracias"], correct: 0 },
-                { type: "audio", url: "audio_a1_2.mp3", q: "В какое время суток происходит диалог?", options: ["Утро", "Вечер", "Ночь"], correct: 0 }
-            ]
-        },
-        {
-            level: "A1 (Аудирование)",
-            title: "Урок 2: Знакомство",
-            tasks: [
-                { type: "audio", url: "audio_a1_3.mp3", q: "Как зовут говорящего?", options: ["Me llamo Carlos", "Me llamo María", "Me llamo Juan"], correct: 0 },
-                { type: "audio", url: "audio_a1_4.mp3", q: "Откуда он родом?", options: ["De España", "De México", "De Colombia"], correct: 1 }
+                { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Прослушайте аудио и выберите правильное приветствие:", options: ["Hola", "Adiós", "Gracias"], correct: 0 }
             ]
         }
     ],
     speaking: [
         {
-            level: "A1 (Говорение)",
-            title: "Урок 1: Первые фразы",
+            level: "Этап 1: База A1",
+            title: "Урок 1: Тренажер базового представления",
             tasks: [
-                { type: "speak", q: "Произнесите: «Привет, как дела?»", match: "hola cómo estás" },
-                { type: "speak", q: "Произнесите: «Меня зовут Анна»", match: "me llamo ana" }
-            ]
-        },
-        {
-            level: "A1 (Говорение)",
-            title: "Урок 2: О себе",
-            tasks: [
-                { type: "speak", q: "Произнесите: «Я из Испании»", match: "soy de españa" },
-                { type: "speak", q: "Произнесите: «Я студент»", match: "soy estudiante" }
+                { type: "speak", q: "Произнесите в микрофон: «Hola, me llamo Juan»", match: "hola me llamo juan" }
             ]
         }
     ],
     writing: [
         {
-            level: "A1 (Письмо)",
-            title: "Урок 1: Базовый перевод",
+            level: "Этап 1: База A1",
+            title: "Урок 1: Простой письменный перевод",
             tasks: [
-                { type: "write", q: "Переведите на испанский: «Добрый день» (после обеда)", match: "buenas tardes" },
-                { type: "write", q: "Переведите: «Спасибо»", match: "gracias" },
-                { type: "write", q: "Переведите: «До свидания»", match: "adiós" }
-            ]
-        },
-        {
-            level: "A1 (Письмо)",
-            title: "Урок 2: Построение предложений",
-            tasks: [
-                { type: "choice", q: "Соберите предложение: «Я из России»", options: ["Rusia de soy", "Soy de Rusia", "De soy Rusia"], correct: 1 },
-                { type: "write", q: "Напишите: «Он врач» (médico)", match: "él es médico" }
+                { type: "write", q: "Переведите на испанский: «Доброе утро»", match: "buenos días" }
             ]
         }
     ]
 };
 
-// ==========================================
-// БАЗА ДАННЫХ УРОКОВ (ПРОДОЛЖЕНИЕ: A2 -> B1)
-// ==========================================
+// ПОЛНАЯ БАЗА ДАННЫХ КУРСА - ЧАСТЬ 2 (ПОПОЛНЕНИЕ ДО УРОВНЯ B1)
 database.theory.push(
     {
-        level: "A2 (Продолжение)",
-        title: "Урок 6: Прошедшее время (Pretérito Indefinido)",
+        level: "Этап 2: Погружение B1 (Месяц 3)",
+        title: "Урок 4: Путешествия, отели и транспорт",
         tasks: [
-            { type: "flashcard", front: "Ayer", back: "Вчера" },
-            { type: "flashcard", front: "Yo hablé / comí / viví", back: "Я говорил / ел / жил" },
-            { type: "flashcard", front: "Anoche", back: "Вчера вечером / ночью" },
-            { type: "choice", q: "Выберите правильную форму: Ayer yo _____ una película.", options: ["veo", "vi", "veía"], correct: 1 }
+            { type: "flashcard", front: "La reserva / El billete de ida y vuelta", back: "Бронь / Билет туда и обратно" },
+            { type: "flashcard", front: "El vuelo se ha retrasado", back: "Рейс задержан" },
+            { type: "choice", q: "Как спросить «Сколько стоит билет?»", options: ["¿Cuánto cuesta el billete?", "¿Dónde está el hotel?", "¿Qué hora es?"], correct: 0 }
         ]
     },
     {
-        level: "B1 (Средний)",
-        title: "Урок 7: Наклонение Subjuntivo (Введение)",
+        level: "Этап 2: Погружение B1 (Месяц 4)",
+        title: "Урок 5: Работа, резюме и карьера",
         tasks: [
-            { type: "flashcard", front: "Espero que tú...", back: "Я надеюсь, что ты..." },
-            { type: "flashcard", front: "Quiero que vengas", back: "Я хочу, чтобы ты пришел" },
-            { type: "choice", q: "Выберите форму: Es importante que tú _____ (estudiar) hoy.", options: ["estudias", "estudies", "estudiar"], correct: 1 }
+            { type: "flashcard", front: "La entrevista de trabajo", back: "Собеседование при приеме на работу" },
+            { type: "flashcard", front: "Estar en el paro / Desempleado", back: "Быть безработным" },
+            { type: "write", q: "Напишите по-испански «Работа / Должность» (p...)", match: "puesto" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Этап 2: Погружение B1 (Месяц 3)",
+        title: "Урок 3: Прошлые времена (Indefinido vs Imperfecto)",
+        tasks: [
+            { type: "flashcard", front: "Pretérito Indefinido", back: "Точечные, завершенные действия в прошлом (ayer, de repente)." },
+            { type: "flashcard", front: "Pretérito Imperfecto", back: "Фоновые, повторяющиеся действия или описание в прошлом (antes, siempre)." },
+            { type: "choice", q: "Выберите правильное время: Cuando yo _____ (ser) niño, vivía en el pueblo.", options: ["fui", "era", "he sido"], correct: 1 }
+        ]
+    },
+    {
+        level: "Этап 2: Погружение B1 (Месяц 4)",
+        title: "Урок 4: Ввод в Subjuntivo (Presente de Subjuntivo)",
+        tasks: [
+            { type: "flashcard", front: "Формула WEIRDO:", back: "Wishes, Emotions, Impersonal, Requests, Doubt, Ojalá (требует Subjuntivo)." },
+            { type: "choice", q: "Заполните пропуск: Es necesario que tú _____ (estudiar) más.", options: ["estudias", "estudies", "estudiara"], correct: 1 }
         ]
     }
 );
 
 database.listening.push(
     {
-        level: "A2 (Аудирование)",
-        title: "Урок 3: Планы на выходные",
+        level: "Этап 2: Погружение B1",
+        title: "Урок 2: Разбор монологов средней сложности",
         tasks: [
-            { type: "audio", url: "audio_a2_1.mp3", q: "Куда собирается поехать герой?", options: ["A la playa", "A la montaña", "A la ciudad"], correct: 0 },
-            { type: "audio", url: "audio_a2_2.mp3", q: "Какая будет погода?", options: ["Lluviosa", "Soleada", "Fría"], correct: 1 }
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую проблему поднимает автор в аудио?", options: ["Пробки на дорогах", "Экология города", "Покупка недвижимости"], correct: 1 }
         ]
     }
 );
 
 database.speaking.push(
     {
-        level: "A2 (Говорение)",
-        title: "Урок 3: Описание прошлого дня",
+        level: "Этап 2: Погружение B1",
+        title: "Урок 2: Монолог-рассуждение на 2 минуты",
         tasks: [
-            { type: "speak", q: "Произнесите: «Вчера я ходил в магазин»", match: "ayer fui a la tienda" },
-            { type: "speak", q: "Произнесите: «Мне очень понравилось»", match: "me gustó mucho" }
+            { type: "speak", q: "Произнесите: «Desde mi punto de vista, la tecnología es muy útil para los jóvenes»", match: "desde mi punto de vista la tecnología es muy útil para los jóvenes" }
         ]
     }
 );
 
 database.writing.push(
     {
-        level: "B1 (Письмо)",
-        title: "Урок 3: Сложные сослагательные конструкции",
+        level: "Этап 2: Погружение B1",
+        title: "Урок 2: Написание аргументированного мнения",
         tasks: [
-            { type: "write", q: "Переведите: «Я хочу, чтобы ты помог мне»", match: "quiero que me ayudes" },
-            { type: "choice", q: "Выберите правильный вариант уступки: _____ llueva, saldré de paseo.", options: ["Aunque", "A pesar de", "Porque"], correct: 0 }
+            { type: "write", q: "Переведите: «Я считаю, что эта проблема очень важна»", match: "pienso que este problema es muy importante" }
         ]
     }
 );
 
+// ПОЛНАЯ БАЗА ДАННЫХ КУРСА - ЧАСТЬ 3 (ФИНАЛ: УРОВЕНЬ B2 И ЭКЗАМЕН SIELE)
+database.theory.push(
+    {
+        level: "Этап 3: Штурм B2 + SIELE (Месяцы 6-7)",
+        title: "Урок 6: Глобальные проблемы, экология и наука",
+        tasks: [
+            { type: "flashcard", front: "El cambio climático / La huella de carbono", back: "Изменение климата / Углеродный след" },
+            { type: "flashcard", front: "Fuentes de energía renovable", back: "Возобновляемые источники энергии" },
+            { type: "choice", q: "Что означает термин 'desarrollo sostenible'?", options: ["Индустриальный рост", "Устойчивое развитие", "Финансовый кризис"], correct: 1 }
+        ]
+    },
+    {
+        level: "Этап 3: Штурм B2 + SIELE (Месяцы 8-9)",
+        title: "Урок 7: Бизнес, экономика и формальная лексика",
+        tasks: [
+            { type: "flashcard", front: "La tasa de desempleo / La inversión", back: "Уровень безработицы / Инвестиция" },
+            { type: "flashcard", front: "Llevar a cabo un proyecto", back: "Реализовать / выполнить проект" },
+            { type: "write", q: "Напишите по-испански «Рынок» (m...)", match: "mercado" }
+        ]
+    }
+);
+
+database.grammar.push(
+    {
+        level: "Этап 3: Штурм B2 + SIELE (Месяцы 6-7)",
+        title: "Урок 5: Прошедшее сослагательное (Imperfecto de Subjuntivo)",
+        tasks: [
+            { type: "flashcard", front: "Формы на -ra / -se:\nhablara, tuviera, fuera", back: "Используется в нереальных условиях (Si tuviera dinero...) и при согласовании времен в плане прошедшего." },
+            { type: "choice", q: "Выберите правильную форму: Si yo _____ (saber) la verdad, te lo diría.", options: ["sé", "supieras", "supiea", "supiera"], correct: 3 }
+        ]
+    },
+    {
+        level: "Этап 3: Штурм B2 + SIELE (Месяцы 8-9)",
+        title: "Урок 6: Условные предложения и коннекторы B2",
+        tasks: [
+            { type: "flashcard", front: "A pesar de que + Subjuntivo", back: "Несмотря на то, что..." },
+            { type: "flashcard", front: "Con tal de que + Subjuntivo", back: "При условии, что..." },
+            { type: "choice", q: "Выберите коннектор уступки: _____ llueva, saldremos de excursión.", options: ["Aunque", "Porque", "Para que"], correct: 0 }
+        ]
+    }
+);
+
+database.listening.push(
+    {
+        level: "Этап 3: Штурм B2 (SIELE)",
+        title: "Урок 3: Аудирование академических лекций и дебатов",
+        tasks: [
+            { type: "audio", url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Es-hola.ogg", q: "Какую позицию занимает второй спикер в дебатах?", options: ["Поддерживает реформу", "Выступает категорически против", "Сомневается в результатах"], correct: 1 }
+        ]
+    }
+);
+
+database.speaking.push(
+    {
+        level: "Этап 3: Штурм B2 (SIELE)",
+        title: "Урок 3: Защита аргументов под таймер",
+        tasks: [
+            { type: "speak", q: "Произнесите: «Es fundamental destacar que esta medida mejorará la situación económica»", match: "es fundamental destacar que esta medida mejorará la situación económica" }
+        ]
+    }
+);
+
+database.writing.push(
+    {
+        level: "Этап 3: Штурм B2 (SIELE)",
+        title: "Урок 3: Официальное эссе и жалоба формата SIELE",
+        tasks: [
+            { type: "write", q: "Напишите стандартное официальное обращение: «Посредством данного письма я хотел бы выразить...»", match: "por medio de la presente carta quisiera expresar" }
+        ]
+    }
+);
+
+
 // ==========================================
-// ИНТЕРАКТИВНЫЙ ДВИЖОК И УПРАВЛЕНИЕ ИНТЕРФЕЙСОМ
+// ЛОГИКА ИНТЕРФЕЙСА И РЕНДЕРИНГА ПРИЛОЖЕНИЯ
 // ==========================================
 
-let xp = parseInt(localStorage.getItem('sieleXP')) || 0;
+let xp = parseInt(localStorage.getItem('sieleMasterXP')) || 0;
 document.getElementById('xp-counter').textContent = xp;
 
 let currentSection = '';
@@ -314,14 +363,16 @@ const ui = {
     feedback: document.getElementById('feedback-msg')
 };
 
-// Рендер списков уроков на экранах при загрузке
+// Функция отрисовки всех секций и уроков на экранах
 function renderAllSections() {
-    ['theory', 'listening', 'speaking', 'writing'].forEach(sec => {
+    ['theory', 'grammar', 'listening', 'speaking', 'writing'].forEach(sec => {
         const container = document.getElementById(`tab-${sec}`);
         if (!container) return;
         container.innerHTML = '';
         
         let currentLevel = '';
+        if (!database[sec]) return;
+
         database[sec].forEach((lesson, idx) => {
             if (lesson.level !== currentLevel) {
                 currentLevel = lesson.level;
@@ -331,8 +382,14 @@ function renderAllSections() {
                 container.appendChild(header);
             }
             const btn = document.createElement('button');
-            btn.className = `lesson-btn ${sec === 'theory' ? 'theory' : 'practice'}`;
-            btn.innerHTML = `<span>📖 ${lesson.title}</span> <span>Начать</span>`;
+            
+            let btnClass = 'practice';
+            let icon = '📖';
+            if (sec === 'theory') { btnClass = 'theory'; icon = '📚'; }
+            if (sec === 'grammar') { btnClass = 'grammar'; icon = '⚙️'; }
+            
+            btn.className = `lesson-btn ${btnClass}`;
+            btn.innerHTML = `<span>${icon} ${lesson.title}</span> <span>Начать</span>`;
             btn.onclick = () => startLesson(sec, idx);
             container.appendChild(btn);
         });
@@ -372,14 +429,14 @@ function loadTask() {
 
     if (currentTask.type === 'flashcard') {
         ui.lessonBody.innerHTML = `
-            <div class="q-title">Изучите карточку правила:</div>
+            <div class="q-title">Карточка правила (Изучите и переверните):</div>
             <div class="flashcard" onclick="this.classList.toggle('flipped'); checkFlashcard()">
                 <div class="flashcard-inner">
                     <div class="flashcard-front">${currentTask.front}</div>
                     <div class="flashcard-back">${currentTask.back}</div>
                 </div>
             </div>
-            <div style="text-align: center; color: #777;">Нажмите на карточку, чтобы перевернуть</div>
+            <div style="text-align: center; color: #777;">Нажмите на карточку для просмотра перевода</div>
         `;
         ui.checkBtn.textContent = "Продолжить";
         ui.checkBtn.disabled = true;
@@ -388,7 +445,7 @@ function loadTask() {
     } else if (currentTask.type === 'write') {
         ui.lessonBody.innerHTML = `
             <div class="q-title">${currentTask.q}</div>
-            <input type="text" class="text-input" id="write-input" placeholder="Введите ответ на испанском..." autocomplete="off">
+            <input type="text" class="text-input" id="write-input" placeholder="Введите ответ по-испански..." autocomplete="off">
         `;
         ui.checkBtn.textContent = "Проверить";
 
@@ -417,9 +474,9 @@ function loadTask() {
         ui.lessonBody.innerHTML = `
             <div class="q-title">${currentTask.q}</div>
             <button class="mic-btn" id="mic-btn" onclick="startMic()">🎤</button>
-            <div style="text-align: center; color: #777;">Нажмите на микрофон и произнесите фразу</div>
+            <div style="text-align: center; color: #777;">Нажмите на микрофон и отчетливо произнесите фразу</div>
         `;
-        ui.checkBtn.textContent = "Пропустить";
+        ui.checkBtn.textContent = "Пропустить / Далее";
     }
 }
 
@@ -472,7 +529,7 @@ function showFeedback(isCorrect) {
     ui.feedback.style.display = 'block';
     if (isCorrect) {
         ui.footer.classList.add('correct-bg');
-        ui.feedback.textContent = "Отлично! Верно.";
+        ui.feedback.textContent = "Отлично! Задание выполнено верно.";
         ui.feedback.style.color = "var(--primary-dark)";
         xp += 10;
     } else {
@@ -497,17 +554,18 @@ function nextTask() {
     if (currentTaskIdx < lesson.tasks.length) {
         loadTask();
     } else {
-        localStorage.setItem('sieleXP', xp);
+        localStorage.setItem('sieleMasterXP', xp);
         document.getElementById('xp-counter').textContent = xp;
-        alert(`Поздравляем! Урок пройден. Текущий XP: ${xp}`);
+        alert(`Поздравляем! Модуль завершен. Ваш прогресс: ${xp} XP`);
         closeLesson();
+        renderAllSections();
     }
 }
 
 function startMic() {
     const btn = document.getElementById('mic-btn');
     if (!('webkitSpeechRecognition' in window)) {
-        alert("Распознавание голоса поддерживается в Chrome/Edge.");
+        alert("Распознавание речи поддерживается в браузерах Chrome / Edge.");
         return;
     }
     const recognition = new webkitSpeechRecognition();
@@ -523,7 +581,7 @@ function startMic() {
         } else {
             ui.feedback.style.display = 'block';
             ui.footer.classList.add('wrong-bg');
-            ui.feedback.textContent = `Вы сказали: "${spoken}". Ожидалось: "${currentTask.match}"`;
+            ui.feedback.textContent = `Распознано: "${spoken}". Ожидалось: "${currentTask.match}"`;
             ui.feedback.style.color = "var(--wrong)";
             ui.checkBtn.textContent = "Далее";
         }
@@ -532,66 +590,6 @@ function startMic() {
     recognition.start();
 }
 
-// Первичный запуск отрисовки вкладок
+// Первичная инициализация интерфейса и наполнения
 renderAllSections();
 </script>
-
-// ==========================================
-// БАЗА ДАННЫХ УРОКОВ (ФИНАЛ: УРОВЕНЬ B2 & SIELE)
-// ==========================================
-database.theory.push(
-    {
-        level: "B2 (Продвинутый SIELE)",
-        title: "Урок 8: Сослагательное наклонение в прошлом (Imperfecto de Subjuntivo)",
-        tasks: [
-            { type: "flashcard", front: "Si tuviera dinero...", back: "Если бы у меня были деньги..." },
-            { type: "flashcard", front: "Ojalá viniera", back: "Хоть бы он пришел (в прошлом/нереально)" },
-            { type: "choice", q: "Выберите правильную форму: Si tú _____ (saber) la verdad, me lo dirías.", options: ["sabes", "supieras", "sepas"], correct: 1 }
-        ]
-    },
-    {
-        level: "B2 (Продвинутый SIELE)",
-        title: "Урок 9: Средства связи текста (Marcadores del discurso)",
-        tasks: [
-            { type: "flashcard", front: "Por lo tanto", back: "Следовательно / поэтому" },
-            { type: "flashcard", front: "A pesar de que", back: "Несмотря на то, что" },
-            { type: "choice", q: "Заполните пропуск: ____ sus esfuerzos, no aprobó el examen.", options: ["Aunque", "A pesar de", "Por lo tanto"], correct: 1 }
-        ]
-    }
-);
-
-database.listening.push(
-    {
-        level: "B1-B2 (Аудирование SIELE)",
-        title: "Урок 4: Академическая лекция и интервью",
-        tasks: [
-            { type: "audio", url: "audio_b2_1.mp3", q: "Какую основную проблему обсуждает спикер?", options: ["Экология мегаполисов", "Экономический кризис", "Развитие искусственного интеллекта"], correct: 0 },
-            { type: "audio", url: "audio_b2_2.mp3", q: "Какое решение предлагает эксперт?", options: ["Снизить выбросы углекислого газа", "Увеличить налоги", "Закрыть заводы"], correct: 0 }
-        ]
-    }
-);
-
-database.speaking.push(
-    {
-        level: "B2 (Говорение SIELE)",
-        title: "Урок 4: Аргументация и защита позиции",
-        tasks: [
-            { type: "speak", q: "Произнесите: «С моей точки зрения, это совершенно неприемлемо»", match: "desde mi punto de vista esto es totalmente inaceptable" },
-            { type: "speak", q: "Произнесите: «Я полностью разделяю это мнение»", match: "comparto plenamente esta opinión" }
-        ]
-    }
-);
-
-database.writing.push(
-    {
-        level: "B2 (Письмо SIELE)",
-        title: "Урок 4: Официальное эссе и аргументированное письмо",
-        tasks: [
-            { type: "write", q: "Напишите вводную фразу для эссе: «В последние годы наблюдается тенденция...»", match: "en los últimos años se observa una tendencia" },
-            { type: "choice", q: "Какой союз требует после себя изъявительного наклонения (Indicativo) в утвердительных предложениях?", options: ["Es evidente que", "Dudo que", "Es posible que"], correct: 0 }
-        ]
-    }
-);
-
-// Перезапускаем отрисовку, чтобы новые уроки сразу появились в интерфейсе
-renderAllSections();
